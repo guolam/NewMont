@@ -49,17 +49,22 @@ class TweetController extends Controller
      {
        
        //新しい変数を定義する
-       $tweet = new tweet();
+      $tweet = new tweet();
        //tweetの変数がrequestで受け取った
        //tweet
-       $tweet -> tweet = request() -> tweet;
+      //user_id
+      $tweet -> user_id = Auth::user() -> id;
+      //perfecture
+      $tweet -> perfecture = request() -> perfecture;
+      //mont
+      $tweet -> mont = request() -> mont;
+      //yama
+      $tweet -> tweet = request() -> tweet;
        //description
-       $tweet -> description = request() -> description;
+      $tweet -> description = request() -> description;
       //parking
       $tweet -> parking = request() -> parking;
-      
-       // $tweet -> name = request()->name;
-      $tweet -> user_id = Auth::user() -> id;
+     
       
       // imageの保存処理
       if(request('image')){
