@@ -12,9 +12,9 @@
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
           @include('common.errors')
-          <form class="mb-6" action="{{ route('tweet.store') }}" method="POST" enctype="multipart/form-data">
+          <form id="address-form" class="mb-6" action="{{ route('tweet.store') }}" method="POST" enctype="multipart/form-data" autocomplete="on">
             @csrf
-            
+          
           <div class="flex flex-col mb-4">
           <x-input-label for="perfecture" :value="__('道都府県')" />
           <div class="relative">
@@ -88,12 +88,21 @@
             </div>
             
             
-            
-            
              <div class="flex flex-col mb-4">
+                <p class="title"> </p>
+              <label class="full-field">
               <x-input-label for="parking" :value="__('駐車場')" />
-              <x-text-input id="parking" class="block mt-1 w-full" type="text" name="parking" :value="old('parking')" required autofocus />
+              <x-text-input 
+              id="parking" 
+              class="block mt-1 w-full" 
+              type="text" 
+              name="parking" 
+              :value="old('parking')" 
+              required  autocomplete="on"/>
+            
               <x-input-error :messages="$errors->get('parking')" class="mt-2" />
+                </label>
+              
             </div>
             <div class="flex flex-col mb-4">
               <x-input-label for="description" :value="__('所感')" />
@@ -116,6 +125,11 @@
               </x-primary-button>
             </div>
           </form>
+           @include('map/autocomplete')
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initAutocomplete&region=JP&language=ja&libraries=places&v=weekly"
+            defer
+          ></script>    
         </div>
       </div>
     </div>

@@ -42,6 +42,10 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::get('/test1', function () {
+    return view('test1');
+});
+
 Route::get('/autotest', function () {
     return view('autotest');
 });

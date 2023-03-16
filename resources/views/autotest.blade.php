@@ -11,7 +11,9 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    @include('map/autocomplete')
+    
+
+<div id="map" style="height:500px" class="w-960"> </div>
     <!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see
 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
@@ -37,15 +39,7 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
   Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
       <input type="reset" value="クリア" />
     </form>
-    <!-- Replace Powered By Google image src with self hosted image. https://developers.google.com/maps/documentation/places/web-service/policies#other_attribution_requirements -->
-    
-
-    <!-- 
-      The `defer` attribute causes the callback to execute after the full HTML
-      document has been parsed. For non-blocking uses, avoiding race conditions,
-      and consistent behavior across browsers, consider loading using Promises
-      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-      -->
+      @include('map/autocomplete')
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initAutocomplete&region=JP&language=ja&libraries=places&v=weekly"
       defer
