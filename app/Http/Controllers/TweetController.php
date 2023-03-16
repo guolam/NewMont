@@ -64,6 +64,8 @@ class TweetController extends Controller
       $tweet -> description = request() -> description;
       //parking
       $tweet -> parking = request() -> parking;
+      
+      $tweet -> food = request() -> food;
      
       
       // imageの保存処理

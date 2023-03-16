@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::table('tweets', function (Blueprint $table) {
             //
-            $table->text('perfecture')->after('id')->constrained()->cascadeOnDelete();
-            $table->text('mont')->after('perfecture')->nullable()->constrained()->cascadeOnDelete();
-      
+            $table->text('food')->after('parking')->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -30,8 +28,7 @@ return new class extends Migration
     {
         Schema::table('tweets', function (Blueprint $table) {
             //
-            $table->dropColumn(['perfecture']);
-            $table->dropColumn(['mont']);
+            $table->dropColumn(['food']);
         });
     }
 };

@@ -1,22 +1,34 @@
 <script>
 
 let autocomplete;
-let address1Field;
-let address2Field;
-let postalField;
+let parking;
+let food;
 
 function initAutocomplete() {
-  address1Field = document.querySelector("#parking");
-  address2Field = document.querySelector("#address2");
-  postalField = document.querySelector("#postcode");
+  parking = document.querySelector("#parking");
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
-  autocomplete = new google.maps.places.Autocomplete(address1Field, {
+  autocomplete = new google.maps.places.Autocomplete(parking, {
     componentRestrictions: { country: ["jp"] },
     fields: ["address_components", "geometry"],
     types: [ "establishment" ],
   });
-  address1Field.focus();
+  parking.focus();
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  autocomplete.addListener("place_changed", fillInAddress);
+  
+  
+  
+   food = document.querySelector("#food");
+  // Create the autocomplete object, restricting the search predictions to
+  // addresses in the US and Canada.
+  autocomplete = new google.maps.places.Autocomplete(food, {
+    componentRestrictions: { country: ["jp"] },
+    fields: ["address_components", "geometry"],
+    types: [ "establishment" ],
+  });
+  food.focus();
   // When the user selects an address from the drop-down, populate the
   // address fields in the form.
   autocomplete.addListener("place_changed", fillInAddress);
@@ -26,11 +38,6 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   const place = autocomplete.getPlace();
 
-
-  // Get each component of the address from the place details,
-  // and then fill-in the corresponding field on the form.
-  // place.address_components are google.maps.GeocoderAddressComponent objects
-  // which are documented at http://goo.gle/3l5i5Mr
   for (const component of place.address_components) {
     // @ts-ignore remove once typings fixed
     const componentType = component.types[0];
@@ -67,7 +74,7 @@ function fillInAddress() {
     }
   }
 
-  address1Field.value = address1;
+  parking.value = address1;
 
   // After filling the form with address components from the Autocomplete
   // prediction, set cursor focus on the second address line to encourage

@@ -5,6 +5,7 @@
     </h2>
   </x-slot>
 
+<body>
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -31,8 +32,19 @@
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="parking">
                 {{$tweet->parking}}
               </p>
+              
               <!--ここに入れたい、駐車場の地図-->
+              
             </div>
+            <div id="map" style="height:500px" class="w-960"> </div>
+            @include('map/yama')
+            
+            <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">下山飯</p>
+              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="parking">
+                {{$tweet->food}}
+              </p>
+            </div>  
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">所感</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="description">
@@ -52,5 +64,10 @@
       </div>
     </div>
   </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?
+key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&
+language=ja&region=JP&callback=initMap"></script>
+</body>
 </x-app-layout>
 

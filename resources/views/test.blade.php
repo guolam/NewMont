@@ -3,11 +3,9 @@
 　<body>
   　<!--<div id="map">Now Loading...</div>-->
   　 <div id="map" style="height:500px" class="w-960"> </div>
-  　
-  　
   　@include('map/yama')
   　
-  　<input></input>
+  
   　
   　<form id="address-form" action="" method="get" autocomplete="on">
     <p class="title">駐車場</p>

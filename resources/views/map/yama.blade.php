@@ -1,11 +1,9 @@
 <script>
 
-
-
 function initMap() {
  
   var target = document.getElementById('map'); //マップを表示する要素を指定
-  var address = '福岡県福岡市早良区原７丁目'; //input//住所を指定
+  var address = '{{$tweet->parking}}'; //input//住所を指定
   var geocoder = new google.maps.Geocoder();  
 
   geocoder.geocode({ address: address }, function(results, status){

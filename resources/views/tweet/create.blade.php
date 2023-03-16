@@ -87,9 +87,9 @@
               <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
             </div>
             
-            
-             <div class="flex flex-col mb-4">
-                <p class="title"> </p>
+            @include('map/autocomplete')
+            <div class="flex flex-col mb-4">
+              <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="parking" :value="__('駐車場')" />
               <x-text-input 
@@ -99,11 +99,25 @@
               name="parking" 
               :value="old('parking')" 
               required  autocomplete="on"/>
-            
               <x-input-error :messages="$errors->get('parking')" class="mt-2" />
-                </label>
-              
+              </label>
             </div>
+
+            <div class="flex flex-col mb-4">
+              <p class="title"> </p>
+              <label class="full-field">
+              <x-input-label for="food" :value="__('下山飯')" />
+              <x-text-input 
+              id="food" 
+              class="block mt-1 w-full" 
+              type="text" 
+              name="food" 
+              :value="old('food')" 
+              required  autocomplete="on"/>
+              <x-input-error :messages="$errors->get('food')" class="mt-2" />
+              </label>
+            </div>
+            
             <div class="flex flex-col mb-4">
               <x-input-label for="description" :value="__('所感')" />
               <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus />
@@ -125,7 +139,7 @@
               </x-primary-button>
             </div>
           </form>
-           @include('map/autocomplete')
+           
           <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initAutocomplete&region=JP&language=ja&libraries=places&v=weekly"
             defer
