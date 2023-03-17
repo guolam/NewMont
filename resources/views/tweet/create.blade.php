@@ -16,7 +16,7 @@
             @csrf
           
           <div class="flex flex-col mb-4">
-          <x-input-label for="perfecture" :value="__('道都府県')" />
+          <x-input-label for="perfecture" :value="__('道都府県（必須）')" />
           <div class="relative">
           <select id="perfecture" name="perfecture" type="text" :value="old('perfecture')" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  required autofocus>
             <option></option>
@@ -72,7 +72,7 @@
           </div></div>
             
           <div class="flex flex-col mb-4">
-          <x-input-label for="mont" :value="__('百・二百名山')" />
+          <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
           <div class="relative">
           <select id="mont" type="text" name="mont" :value="old('mont')" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
             <option></option>
@@ -82,7 +82,7 @@
           </div></div>
             
             <div class="flex flex-col mb-4">
-              <x-input-label for="tweet" :value="__('山')" />
+              <x-input-label for="tweet" :value="__('山（必須）')" />
               <x-text-input id="tweet" class="block mt-1 w-full" type="text" name="tweet" :value="old('tweet')" required autofocus />
               <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
             </div>
@@ -91,7 +91,7 @@
             <div class="flex flex-col mb-4">
               <p class="title"> </p>
               <label class="full-field">
-              <x-input-label for="parking" :value="__('駐車場')" />
+              <x-input-label for="parking" :value="__('駐車場(必須・場所を入力すると、住所が表示されます)')" />
               <x-text-input 
               id="parking" 
               class="block mt-1 w-full" 
@@ -102,21 +102,41 @@
               <x-input-error :messages="$errors->get('parking')" class="mt-2" />
               </label>
             </div>
+          
+            <div id="map" style="height:500px" class="w-960"> </div>
 
             <div class="flex flex-col mb-4">
               <p class="title"> </p>
               <label class="full-field">
-              <x-input-label for="food" :value="__('下山飯')" />
+              <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
+              <x-text-input 
+              id="spring" 
+              class="block mt-1 w-full" 
+              type="text" 
+              name="spring" 
+              :value="old('spring')" 
+              autocomplete="on"/>
+              <x-input-error :messages="$errors->get('spring')" class="mt-2" />
+              </label>
+            </div>
+          
+            <div id="mapSpring" style="height:500px" class="w-960"> </div>
+
+            <div class="flex flex-col mb-4">
+              <p class="title"> </p>
+              <label class="full-field">
+              <x-input-label for="food" :value="__('飲食店 (場所を入力すると、住所が表示されます)')" />
               <x-text-input 
               id="food" 
               class="block mt-1 w-full" 
               type="text" 
               name="food" 
               :value="old('food')" 
-              required  autocomplete="on"/>
+              autocomplete="on"/>
               <x-input-error :messages="$errors->get('food')" class="mt-2" />
               </label>
             </div>
+            <div id="mapFood" style="height:500px" class="w-960"> </div>
             
             <div class="flex flex-col mb-4">
               <x-input-label for="description" :value="__('所感')" />
@@ -130,7 +150,7 @@
               <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>
            
-            <!--<x-input-label for="image" :value="__('画像')" />-->
+            
             @csrf
             
             <div class="flex items-center justify-end mt-4">
@@ -141,9 +161,10 @@
           </form>
            
           <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initAutocomplete&region=JP&language=ja&libraries=places&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initMap&region=JP&language=ja&libraries=places&v=weekly"
             defer
           ></script>    
+         
         </div>
       </div>
     </div>

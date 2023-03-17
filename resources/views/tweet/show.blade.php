@@ -27,6 +27,7 @@
                 {{$tweet->tweet}}
               </p>
             </div>
+            @include('map/showYama')
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">駐車場</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="parking">
@@ -34,17 +35,26 @@
               </p>
               
               <!--ここに入れたい、駐車場の地図-->
-              
             </div>
             <div id="map" style="height:500px" class="w-960"> </div>
-            @include('map/yama')
             
             <div class="flex flex-col mb-4">
-              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">下山飯</p>
-              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="parking">
+              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">温泉</p>
+              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="spring">
+                {{$tweet->spring}}
+              </p>
+            </div>  
+            <div id="mapSpring" style="height:500px" class="w-960"> </div>
+            
+            
+            <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">ごはん</p>
+              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="food">
                 {{$tweet->food}}
               </p>
             </div>  
+            <div id="mapFood" style="height:500px" class="w-960"> </div>
+            
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">所感</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="description">
@@ -65,7 +75,8 @@
     </div>
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?
+<script async defer src=
+"https://maps.googleapis.com/maps/api/js?
 key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&
 language=ja&region=JP&callback=initMap"></script>
 </body>

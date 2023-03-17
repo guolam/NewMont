@@ -65,6 +65,8 @@ class TweetController extends Controller
       //parking
       $tweet -> parking = request() -> parking;
       
+      $tweet -> spring = request() -> spring;
+      
       $tweet -> food = request() -> food;
      
       
