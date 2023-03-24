@@ -11,7 +11,11 @@
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
           <div class="mb-6">
-            
+            <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">日付</p>
+              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="date">
+                {{$tweet->date}}
+              </p>
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">名山</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="mont">

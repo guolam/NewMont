@@ -57,6 +57,8 @@ class TweetController extends Controller
       //perfecture
       $tweet -> perfecture = request() -> perfecture;
       //mont
+      $tweet -> date = request() -> date;
+      
       $tweet -> mont = request() -> mont;
       //yama
       $tweet -> tweet = request() -> tweet;

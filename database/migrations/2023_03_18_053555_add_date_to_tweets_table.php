@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tweets', function (Blueprint $table) {
+           
+            $table->date('date')->after('user_id')->nullable()->constrained()->cascadeOnDelete();
             //
-            $table->text('perfecture')->after('user_id')->constrained()->cascadeOnDelete();
-            $table->text('mont')->after('perfecture')->nullable()->constrained()->cascadeOnDelete();
-      
         });
     }
 
@@ -29,9 +28,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('tweets', function (Blueprint $table) {
+             $table->dropColumn(['date']);
             //
-            $table->dropColumn(['perfecture']);
-            $table->dropColumn(['mont']);
         });
     }
 };

@@ -62,4 +62,21 @@ class User extends Authenticatable
     return $this->belongsToMany(self::class, "follows", "following_id", "user_id")->withTimestamps();
   }
 
+//groupオーナー
+  public function ownedGroups()
+    {
+        return $this->hasMany(Group::class, 'owner_id');
+    }
+
+//group member
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_members');
+    }
+    
+    public function groupRequests()
+    {
+        return $this->hasMany(GroupRequest::class);
+    }
+
 }

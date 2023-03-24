@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tweets', function (Blueprint $table) {
+        Schema::table('groups', function (Blueprint $table) {
+            $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
             //
-            $table->text('perfecture')->after('user_id')->constrained()->cascadeOnDelete();
-            $table->text('mont')->after('perfecture')->nullable()->constrained()->cascadeOnDelete();
-      
         });
     }
 
@@ -28,10 +26,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tweets', function (Blueprint $table) {
+        Schema::table('groups', function (Blueprint $table) {
+             $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
             //
-            $table->dropColumn(['perfecture']);
-            $table->dropColumn(['mont']);
         });
     }
 };
