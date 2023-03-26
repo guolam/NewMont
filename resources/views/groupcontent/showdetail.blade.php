@@ -7,7 +7,7 @@
     </x-slot>
     
 <body>
-
+  
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -17,6 +17,7 @@
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">日付</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="date">
                 {{$group_content->date}}
+                {{ dd($group_content) }}
               </p>
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">名山</p>
@@ -68,7 +69,7 @@
               </p>
               <img src="{{ asset('storage/image/'.$group_content->image)}}"　class="mx-auto" style="height:300px;">
             </div>
-            <div class="flex items-center justify-end mt-4">
+             <div class="flex items-center justify-end mt-4">
             <a href="{{ url()->previous() }}">
               <x-secondary-button class="ml-3">
                 {{ __('戻る') }}
@@ -80,14 +81,15 @@
       </div>
     </div>
   </div>
+</body>
+
+</body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script async defer src=
 "https://maps.googleapis.com/maps/api/js?
 key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&
 language=ja&region=JP&callback=initMap"></script>
-</body>
-@endforeach
-
   </div>
                 </div>
             </div>

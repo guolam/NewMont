@@ -130,17 +130,26 @@ public function show($group_id)
 }
 
 // コンテンツの詳細を出す画面
-        public function showdetail($id)
+
+public function showDetail($id)
 {
-    $group_contents = GroupContent::where('id', $id)->get();
-    return view('groupcontent.show', compact('group_contents'));
+    
+    
+    $group_content = GroupContent::find($id);
+    if ($group_content) {
+        return view('groupcontent.showdetail', compact('group_content'));
+    } else {
+        return redirect()->route('some.error.page'); // 存在しないIDの場合のリダイレクト先
     }
-
-
+}
 // public function show(GroupContent $group_content)
 // {
 //     return view('groupcontent.show', compact('group_content'));
 // }
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.
