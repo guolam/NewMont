@@ -121,16 +121,20 @@ class GroupContentController extends Controller
      */
 }
 
-
+// コンテンツのタイトルと内容を表示する画面
 public function show($group_id)
 {
     $group_contents = GroupContent::where('group_id', $group_id)->get();
     return view('groupcontent.show', compact('group_contents'));
     
-    
-    
-    
 }
+
+// コンテンツの詳細を出す画面
+        public function showdetail($id)
+{
+    $group_contents = GroupContent::where('id', $id)->get();
+    return view('groupcontent.show', compact('group_contents'));
+    }
 
 
 // public function show(GroupContent $group_content)

@@ -41,15 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
     
-    
-    // Route::get('/groupcontent/create', [GroupContentController::class,'create'])->name('groupcontent.create');
     Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
-    // Route::resource('groupcontent', GroupContentController::class);
     Route::get('/groupcontent/create/{group_id}', [GroupContentController::class, 'create'])->name('groupcontent.create');
     Route::post('/groupcontent/store/{group_id}', [GroupContentController::class, 'store'])->name('groupcontent.store');
-    // Route::get('/groupcontent/{group_content_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
     Route::get('/groupcontent/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
-    
+    Route::get('/groupcontent/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 
     Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
     

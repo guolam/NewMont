@@ -34,6 +34,8 @@
         @endforeach
     </ul>
     
+    @include('groupcontent/show')
+    
               <!-- 関連データを表示するためのコードを追加（例: 関連ユーザー、投稿など） -->
                     <!-- $related_dataを使用してデータを表示 -->
                 </div>

@@ -55,38 +55,13 @@ class GroupController extends Controller
       
     // }
     
-    public function show(Group $group)
-{
-    $group_contents = $group->groupContents;
-    $related_users = $group->users; // 関連するユーザーを取得
-    return view('group.show', compact('group', 'group_contents', 'related_users'));
+        public function show(Group $group)
+    {
+        $group_contents = $group->groupContents;
+        $related_users = $group->users; // 関連するユーザーを取得
+        return view('group.show', compact('group', 'group_contents', 'related_users'));
+    }
+    
+    
+    
 }
-
-}
-
-
-// class GroupController extends Controller
-// {
-//     public function create(Group $group)
-//     {
-//         return view('group.create', compact('group'));
-//     }
-
-//     public function store(Request $request, Group $group)
-//     {
-//         // フォームデータのバリデーション
-//         $validatedData = $request->validate([
-//             'message' => 'nullable|string|max:255',
-//         ]);
-
-//         // GroupMembershipRequest モデルを作成し、データベースに保存
-//         $request = new GroupMembershipRequest;
-//         $request->user_id = auth()->id();
-//         $request->group_id = $group->id;
-//         $request->message = $validatedData['message'];
-//         $request->save();
-
-//         // 成功メッセージをフラッシュデータに保存し、グループの詳細ページにリダイレクト
-//         return redirect()->route('groups.show', $group)->with('success', '申請が送信されました。');
-//     }
-// }
