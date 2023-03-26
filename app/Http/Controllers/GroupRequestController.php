@@ -15,8 +15,13 @@ class GroupRequestController extends Controller
 {
     public function index()
     {
-        $groupRequests = GroupRequest::where('user_id', auth()->user()->id)->get();
-        return view('group_requests.index', compact('groupRequests'));
+           $pending_requests = GroupRequest::where('status', 'pending')->get();
+        $groups = Group::all();
+
+        return view('group_requests.index', [
+        'pending_requests' => $pending_requests,
+        'groups' => $groups,
+        ]);
     }
 
     public function create()
@@ -26,29 +31,72 @@ class GroupRequestController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'group_id' => 'required|exists:groups,id',
-        ]);
+{
+    $request->validate([
+        'group_id' => 'required|integer',
+    ]);
 
-        GroupRequest::create([
-            'user_id' => auth()->user()->id,
-            'group_id' => $validatedData['group_id'],
-            'status' => 'pending',
-        ]);
+    $group_id = $request->input('group_id');
+    $user_id = Auth::id();
 
-        return redirect()->route('group_requests.index')->with('success', 'Group request sent successfully');
+    $existing_request = GroupRequest::where('group_id', $group_id)
+                                    ->where('user_id', $user_id)
+                                    ->first();
+
+    if ($existing_request) {
+        return redirect()->back()->with('error', 'すでにリクエストが存在します。');
     }
 
-    public function approve(GroupRequest $groupRequest)
+    $group_request = new GroupRequest;
+    $group_request->group_id = $group_id;
+    $group_request->user_id = $user_id;
+    $group_request->status = 'pending';
+    $group_request->save();
+
+    return redirect()->back()->with('success', 'グループ参加リクエストを送信しました。');
+}
+
+
+
+   public function approve(Request $request, $id)
     {
-        $groupRequest->update(['status' => 'approved']);
-        return redirect()->route('group_requests.index')->with('success', 'Group request approved successfully');
+        $group_request = GroupRequest::findOrFail($id);
+
+
+    if ($group_request->status === 'approved') {
+        return redirect()->back()->with('error', 'このリクエストはすでに承認されています。');
     }
 
-    public function reject(GroupRequest $groupRequest)
+        // 申請のステータスを更新
+        $group_request->status = 'approved';
+        $group_request->save();
+
+        // グループにユーザーを追加
+        $group_request->group->users()->attach($group_request->user_id);
+
+        // 成功メッセージを表示
+        $request->session()->flash('status', 'Group request approved.');
+
+        return redirect()->route('group_requests.index')->with('success', 'リクエストを承認しました。');
+    }
+
+    public function reject(Request $request, $id)
     {
-        $groupRequest->update(['status' => 'rejected']);
-        return redirect()->route('group_requests.index')->with('success', 'Group request rejected successfully');
+        $group_request = GroupRequest::findOrFail($id);
+
+        // 申請のステータスを更新
+        $group_request->status = 'rejected';
+        $group_request->save();
+
+        // 成功メッセージを表示
+        $request->session()->flash('status', 'Group request rejected.');
+
+        return redirect()->route('group_requests.index');
+        
+    }
+
+   public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

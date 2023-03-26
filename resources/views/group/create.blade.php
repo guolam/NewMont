@@ -1,9 +1,10 @@
-<!-- resources/views/tweet/create.blade.php -->
+<!--resources/views/group/create.blade.php -->
+<!--グループ作成-->
 
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('新規作成') }}
+      {{ __('グループ作成') }}
     </h2>
   </x-slot>
 

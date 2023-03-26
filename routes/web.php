@@ -8,6 +8,8 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupRequestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +36,25 @@ Route::middleware('auth')->group(function () {
     // Route::resource('group', GroupController::class);
     // Route::resource('groupmembership', GroupMembershipRequestController::class);
     
-    Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
-    Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
-    Route::put('group_requests/{group_request}/approve', [GroupRequestController::class, 'approve'])->name('group_requests.approve');
-    Route::put('group_requests/{group_request}/reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
+    Route::get('/mypage', [UserController::class, 'show'])->name('users.show');
     
+    Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
+    Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
+    
+    
+    // Route::get('/groupcontent/create', [GroupContentController::class,'create'])->name('groupcontent.create');
+    Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
+    // Route::resource('groupcontent', GroupContentController::class);
+    Route::get('/groupcontent/create/{group_id}', [GroupContentController::class, 'create'])->name('groupcontent.create');
+    Route::post('/groupcontent/store/{group_id}', [GroupContentController::class, 'store'])->name('groupcontent.store');
+    // Route::get('/groupcontent/{group_content_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
+    Route::get('/groupcontent/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
+    
+
+    Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
+    
+    Route::post('/group_requests/{id}/approve', [GroupRequestController::class, 'approve'])->name('group_requests.approve');
+    Route::post('/group_requests/{id}/reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
     
 });
 

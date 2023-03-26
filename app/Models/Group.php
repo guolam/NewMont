@@ -45,4 +45,14 @@ class Group extends Model
     {
         return $this->hasMany(GroupRequest::class);
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+    
+   public function groupContents()
+{
+    return $this->hasMany(GroupContent::class);
+}
 }

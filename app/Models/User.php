@@ -69,14 +69,21 @@ class User extends Authenticatable
     }
 
 //group member
+
+
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'group_members');
+        return $this->belongsToMany(Group::class);
     }
+    
     
     public function groupRequests()
     {
         return $this->hasMany(GroupRequest::class);
     }
-
+  
+    public function isMemberOf($group)
+    {
+        return $this->groups->contains($group);
+    }
 }
