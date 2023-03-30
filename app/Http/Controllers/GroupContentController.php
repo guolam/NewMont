@@ -76,6 +76,9 @@ class GroupContentController extends Controller
       $group_content -> spring = request() -> spring;
       
       $group_content -> food = request() -> food;
+      
+      $is_public = $request->input('is_public');
+      $group_content->is_public = $is_public !== null ? $is_public : 0; // NULL値の場合、0に設定する
     
 
     // imageの保存処理
@@ -93,6 +96,7 @@ class GroupContentController extends Controller
     
     // バリデーション
     $validator = Validator::make($request->all(), [
+    'is_public' => 'required|boolean',
     'tweet' => 'required | max:300',
     'description' => 'required',
     'image' => 'required',
@@ -131,21 +135,24 @@ public function show($group_id)
 
 // コンテンツの詳細を出す画面
 
-public function showDetail($id)
+
+public function showdetail($id)
 {
-    
-    
     $group_content = GroupContent::find($id);
+
     if ($group_content) {
-        return view('groupcontent.showdetail', compact('group_content'));
-    } else {
-        return redirect()->route('some.error.page'); // 存在しないIDの場合のリダイレクト先
-    }
+        // 公開コンテンツか、ログイン済みであれば表示
+        if ($group_content->is_public || Auth::check()) {
+            return view('groupcontent.showdetail', compact('group_content'));
+        } else {
+            // 非公開コンテンツで未ログインの場合、ログインページへリダイレクト
+      return redirect()->route('login');
+      }
+      } else {
+      // 存在しないIDの場合のリダイレクト先
+      return redirect()->route('some.error.page');
+      }
 }
-// public function show(GroupContent $group_content)
-// {
-//     return view('groupcontent.show', compact('group_content'));
-// }
 
 
 

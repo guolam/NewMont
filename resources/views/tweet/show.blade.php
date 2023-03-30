@@ -85,4 +85,3 @@ key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&
 language=ja&region=JP&callback=initMap"></script>
 </body>
 </x-app-layout>
-

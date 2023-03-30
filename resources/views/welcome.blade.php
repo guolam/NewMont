@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5e7m7/components/moment.js/2.29.1/moment.min.js.map">
 
         <title>Laravel</title>
 
@@ -21,37 +22,22 @@
         </style>
         
         </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            
-            <div id="video-area">
-        <video id="video" poster="image/yamobe_cover.jpeg" webkit-playsinline playsinline muted autoplay loop>
-        <!--
-        poster：動画ファイルが利用できない環境で代替表示される画像
-        webkit-playsinline：iOS 9までのSafari用インライン再生指定
-        playsinline：iOS 10以降のSafari用インライン再生指定
-        muted：音声をミュートさせる
-        autoplay：動画を自動再生させる
-        loop：動画をループさせる
-        controls：コントロールバーを表示する
-        -->
-        <source src={{asset('image/yamobe_movie.mp4')}} type="video/mp4">
+<body class="antialiased">
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <!-- 省略 -->
         
-        </video>
-        <!--/video-area--></div>
+        <div class="search-container">
+    <form action="{{ route('search') }}" method="get">
+        <input type="text" name="query" placeholder="キーワードを入力...">
+        <button type="submit">検索</button>
+    </form>
+    </div>
+
+        <div class="mt-8">
+            <h2 class="text-lg mb-4">検索結果</h2>
+            <div id="search-results">
+                {{-- 検索結果がここに表示されます --}}
+            
                 <div class="justify-center">
                 YAMOBE<br>
                 
@@ -64,7 +50,11 @@
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">登録されない方はこちら</a>
                 </div>
                 
-                
+           </div>
         </div>
-    </body>
-</html>
+        
+      
+    </div>
+</body>
+</html>     
+       

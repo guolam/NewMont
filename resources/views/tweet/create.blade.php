@@ -14,6 +14,19 @@
           @include('common.errors')
           <form id="address-form" class="mb-6" action="{{ route('tweet.store') }}" method="POST" enctype="multipart/form-data" autocomplete="on">
             @csrf
+          
+<div class="flex flex-col mb-4">
+  <x-input-label :value="__('公開設定')" />
+  <div class="flex items-center mt-2">
+    <input id="public" type="radio" name="is_public" value="1" class="form-radio h-5 w-5 text-blue-600" {{ old('is_public') === '1' ? 'checked' : '' }}>
+    <label for="public" class="ml-2">{{ __('公開') }}</label>
+  </div>
+  <div class="flex items-center mt-2">
+    <input id="private" type="radio" name="is_public" value="0" class="form-radio h-5 w-5 text-blue-600" {{ old('is_public') === '0' ? 'checked' : '' }}>
+    <label for="private" class="ml-2">{{ __('非公開') }}</label>
+  </div>
+  <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
+</div>
           <div class="flex flex-col mb-4">
               <x-input-label for="date" :value="__('日付')" />
               <x-text-input id="date" class="block mt-1 w-full" type="date" name="date" :value="old('date')" required autofocus />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Tweet;
 use App\Models\User;
+use App\Models\GroupContent;
 use Illuminate\Http\Request;
 
 
@@ -26,6 +27,33 @@ class SearchController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        //TweetsとGroupContentsのテーブルから検索
+        $tweets = Tweet::query()
+            ->where('tweet', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->get();
+    
+        $groupContents = GroupContent::query()
+            ->where('tweet', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->get();
+    
+        return view('search_results', [
+            'tweets' => $tweets,
+            'groupContents' => $groupContents
+        ]);
+    }
+
+
+    public function show($id)
+    {
+        $result = SearchResult::find($id);
+        return view('search_result_detail', compact('result'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,10 +83,10 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

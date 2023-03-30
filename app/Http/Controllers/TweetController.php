@@ -70,6 +70,9 @@ class TweetController extends Controller
       $tweet -> spring = request() -> spring;
       
       $tweet -> food = request() -> food;
+      
+    $is_public = $request->input('is_public');
+    $tweet->is_public = $is_public !== null ? $is_public : 0; // NULL値の場合、0に設定する
      
       
       // imageの保存処理
@@ -87,6 +90,7 @@ class TweetController extends Controller
        
         // バリデーション
         $validator = Validator::make($request->all(), [
+          'is_public' => 'required|boolean',
           'tweet' => 'required | max:300',
           'description' => 'required',
           'image' => 'required',
@@ -118,11 +122,60 @@ class TweetController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+//     */
+//     public function show($id)
+// {
+//     $tweet = Tweet::find($id);
+
+//     if ($tweet->is_public || (Auth::check() && $tweet->user_id === Auth::user()->id)) {
+//         return response()->view('tweet.show', compact('tweet'));
+//     } else {
+//         return response()->view('tweet.showopen', compact('tweet'));
+//     }
+// }
+ 
+ 
+public function show($id)
+{
+    $tweet = Tweet::findOrFail($id);
+    
+    // ログインしている場合は全てのデータを表示
+    if (Auth::check()) {
+        return view('tweet.show', compact('tweet'));
+    }
+    
+    // ログインしていない場合はis_publicが1のデータのみ表示
+    if ($tweet->is_public) {
+        return view('tweet.show', compact('tweet'));
+    } else {
+        abort(404);
+    }
+}
+   
+    // public function showopen($id)
+    // {
+    // $tweet = Tweet::find($id);
+
+    //   if ($tweet) {
+    //       return view('tweet.showopen', compact('tweet'));
+    //   } else {
+    //       return redirect()->route('tweets.index')->with('error', 'Tweet not found');
+    //   }
+    // }
+    
+//     public function showopen($id)
+// {
+//     $tweet = Tweet::findOrFail($id);
+//     if (!$tweet->is_public) {
+//         return redirect()->route('login');
+//     }
+
+//     return view('tweet.show', compact('tweet'));
+// }
+    
+    public function __construct()
     {
-      $tweet = Tweet::find($id);
-      return response()->view('tweet.show', compact('tweet'));
+        $this->middleware('auth')->only(['edit', 'destroy']);
     }
 
     /**

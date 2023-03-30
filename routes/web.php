@@ -41,25 +41,29 @@ Route::middleware('auth')->group(function () {
     Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
     
+    // グループ内のコンテンツ
     Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
     Route::get('/groupcontent/create/{group_id}', [GroupContentController::class, 'create'])->name('groupcontent.create');
     Route::post('/groupcontent/store/{group_id}', [GroupContentController::class, 'store'])->name('groupcontent.store');
     Route::get('/groupcontent/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
-    Route::get('/groupcontent/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
+    // Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 
+    // リクエスト処理
     Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
-    
     Route::post('/group_requests/{id}/approve', [GroupRequestController::class, 'approve'])->name('group_requests.approve');
     Route::post('/group_requests/{id}/reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
-    
 });
 
+
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+Route::get('/search/result/{id}', [SearchController::class, 'show'])->name('search.result.detail');
+// Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
+Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
+Route::get('/tweetshow/{id}', [TweetController::class, 'show'])->name('tweet.showopen');
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');

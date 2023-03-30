@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GroupContent extends Model
 {
     use HasFactory;
+protected $table = 'group_contents';
 
     protected $fillable = [
         'user_id',
@@ -21,6 +22,7 @@ class GroupContent extends Model
         'spring',
         'food',
         'image',
+        'is_public',
     ];
 
     public function user()
@@ -32,4 +34,6 @@ class GroupContent extends Model
     {
         return $this->belongsTo(Group::class);
     }
+    
+    
 }

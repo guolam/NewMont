@@ -9,6 +9,11 @@ class Tweet extends Model
 {
   use HasFactory;
 
+protected $fillable = [
+    // 他のフィールドとともに
+    'is_public',
+];
+
   protected $guarded = [
     'id',
     'created_at',
@@ -29,6 +34,7 @@ class Tweet extends Model
   {
     return $this->belongsToMany(User::class)->withTimestamps();
   }
+  
   
 }
 
