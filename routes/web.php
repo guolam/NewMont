@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
     Route::post('/group_requests/{id}/approve', [GroupRequestController::class, 'approve'])->name('group_requests.approve');
     Route::post('/group_requests/{id}/reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
+
+  
 });
 
 
@@ -63,11 +65,15 @@ Route::get('/tweetshow/{id}', [TweetController::class, 'show'])->name('tweet.sho
 
 Route::get('/', function () {
     return view('welcome');
-});
+    })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [TweetController::class, 'dashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

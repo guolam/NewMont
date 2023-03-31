@@ -152,26 +152,7 @@ public function show($id)
     }
 }
    
-    // public function showopen($id)
-    // {
-    // $tweet = Tweet::find($id);
-
-    //   if ($tweet) {
-    //       return view('tweet.showopen', compact('tweet'));
-    //   } else {
-    //       return redirect()->route('tweets.index')->with('error', 'Tweet not found');
-    //   }
-    // }
-    
-//     public function showopen($id)
-// {
-//     $tweet = Tweet::findOrFail($id);
-//     if (!$tweet->is_public) {
-//         return redirect()->route('login');
-//     }
-
-//     return view('tweet.show', compact('tweet'));
-// }
+   
     
     public function __construct()
     {
@@ -190,13 +171,7 @@ public function show($id)
       return response()->view('tweet.edit', compact('tweet'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(Request $request, $id)
     {
       //バリデーション
@@ -257,6 +232,11 @@ public function show($id)
       return response()->view('tweet.index', compact('tweets'));
     }
     
-   
+  
+    public function dashboard()
+    {
+      $tweets = Tweet::all();
+      return view('dashboard', compact('tweets'));
+    }
 }
 

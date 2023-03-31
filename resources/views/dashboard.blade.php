@@ -11,6 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("ログインしてえらい！") }}
                 </div>
+                
+               @foreach($tweets as $tweet)
+                        <p>{{ $tweet->tweet }}</p>
+                @endforeach
             </div>
         </div>
     </div>

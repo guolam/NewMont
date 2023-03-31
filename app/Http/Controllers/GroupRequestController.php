@@ -15,7 +15,7 @@ class GroupRequestController extends Controller
 {
     public function index()
     {
-           $pending_requests = GroupRequest::where('status', 'pending')->get();
+        $pending_requests = GroupRequest::where('status', 'pending')->get();
         $groups = Group::all();
 
         return view('group_requests.index', [

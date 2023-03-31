@@ -26,12 +26,13 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <!-- 省略 -->
         
-        <div class="search-container">
-    <form action="{{ route('search') }}" method="get">
-        <input type="text" name="query" placeholder="キーワードを入力...">
-        <button type="submit">検索</button>
-    </form>
-    </div>
+        <div class="mt-8 text-center">
+            <h2 class="text-lg mb-4">ログインせずに検索</h2>
+            <form action="{{ route('search') }}" method="GET">
+                <input type="text" name="query" placeholder="キーワードを入力" class="border rounded px-4 py-2">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">検索</button>
+            </form>
+        </div>
 
         <div class="mt-8">
             <h2 class="text-lg mb-4">検索結果</h2>
