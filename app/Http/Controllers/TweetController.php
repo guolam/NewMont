@@ -47,7 +47,7 @@ class TweetController extends Controller
      */
      public function store(Request $request)
      {
-       dd($request->all());
+       
        //新しい変数を定義する
       $tweet = new tweet();
        //tweetの変数がrequestで受け取った
