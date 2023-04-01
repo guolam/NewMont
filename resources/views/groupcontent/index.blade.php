@@ -22,10 +22,11 @@
                   <p class="text-left text-gray-800 dark:text-gray-200">{{$group_content->user->name}}</p>
                   <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">{{$group_content->tweet}}</h3>
                 </a>
-                <div class="flex">
+                  <div class="flex">
+                 
                   <!-- 条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->
-                  
-                  </div>
+               
+</div>
                 </td>
               </tr>
               @endforeach

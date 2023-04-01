@@ -20,8 +20,6 @@
               <tr class="hover:bg-gray-lighter">
                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
                 <a href="{{ route('tweet.show',$tweet->id) }}">
-                  
-                  
                   <!-- 🔽 所属の人を追加 -->
                   <div id="example"></div>
                   <p class="text-left text-gray-800 dark:text-gray-200">{{$tweet->user->name}}</p>
@@ -35,11 +33,9 @@
                   <!-- 更新ボタン -->
                   <form action="{{ route('tweet.edit',$tweet->id) }}" method="GET" class="text-left">
                   @csrf
-                    <x-primary-button class="ml-3">
-                      <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="gray">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                    </x-primary-button>
+                    <button class="ml-3">
+                      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="29" height="29" color="#292929"><defs><style>.cls-637b7f18f95e86b59c57a00f-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-637b7f18f95e86b59c57a00f-1" d="M5.32,14.86,3.41,17.73,1.5,14.86V3.41A1.9,1.9,0,0,1,3.41,1.5h0A1.91,1.91,0,0,1,5.32,3.41Z"></path><path class="cls-637b7f18f95e86b59c57a00f-1" d="M20.59,22.5H8.18a1.92,1.92,0,0,1-1.91-1.91V18.68H18.68v1.91A1.92,1.92,0,0,0,20.59,22.5Z"></path><path class="cls-637b7f18f95e86b59c57a00f-1" d="M22.5,1.5V20.59a1.91,1.91,0,0,1-3.82,0V18.68H10.09V1.5Z"></path><line class="cls-637b7f18f95e86b59c57a00f-1" x1="12.95" y1="6.27" x2="19.64" y2="6.27"></line><line class="cls-637b7f18f95e86b59c57a00f-1" x1="12.95" y1="10.09" x2="19.64" y2="10.09"></line><line class="cls-637b7f18f95e86b59c57a00f-1" x1="12.95" y1="13.91" x2="19.64" y2="13.91"></line></svg>
+                    <button>
                   </form>
                     <!-- 削除ボタン -->
                     <form action="{{ route('tweet.destroy',$tweet->id) }}" method="POST" class="text-left">

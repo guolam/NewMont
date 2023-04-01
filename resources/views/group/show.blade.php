@@ -1,4 +1,9 @@
 <!--group/show.blade.php-->
+<!-- Add accordion styles and scripts -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,19 +25,26 @@
                             </x-href-button>
                         </div>
                         
+                        
                     <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
                         グループ名: {{ $group->group_name }}
                     </h3>
                     <p class="text-left text-gray-800 dark:text-gray-200">
                         グループ詳細: {{ $group->description }}
                     </p>
+                    
 
+
+  <x-accordion>
     <h4 class="mt-4 text-gray-800 dark:text-gray-200">所属ユーザー:</h4>
-    <ul>
-        @foreach ($related_users as $user)
-            <li>{{ $user->name }}</li>
-        @endforeach
-    </ul>
+    <div class="accordion-content">
+        <ul>
+            @foreach ($related_users as $user)
+                <li>{{ $user->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+</x-accordion>
     
     @include('groupcontent/show')
     
@@ -42,4 +54,6 @@
             </div>
         </div>
     </div>
+
+
 </x-app-layout>

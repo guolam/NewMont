@@ -23,9 +23,12 @@ use App\Http\Controllers\GroupContentController;
 */
 
 Route::middleware('auth')->group(function () {
+    // コンテンツのサーチ
     Route::get('/tweet/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/tweet/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/tweet/timeline', [TweetController::class, 'timeline'])->name('tweet.timeline');
+    
+    // ユーザーのサイト
     Route::get('user/{user}', [FollowController::class, 'show'])->name('follow.show');
     Route::post('user/{user}/follow', [FollowController::class, 'store'])->name('follow');
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
@@ -33,8 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::post('tweet/{tweet}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
     Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
     Route::resource('tweet', TweetController::class);
-    // Route::resource('group', GroupController::class);
-    // Route::resource('groupmembership', GroupMembershipRequestController::class);
     
     Route::get('/mypage', [UserController::class, 'show'])->name('users.show');
     
@@ -42,10 +43,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
     
     // グループ内のコンテンツ
+    // Route::resource('/groupcontent/', GroupContentController::class);
     Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
+    Route::get('/groupcontent/{id}/edit', [GroupContentController::class, 'edit'])->name('groupcontent.edit');
+    Route::put('/groupcontent/update/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
+    // Route::get('/groupcontent/show/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
+   
+    
     Route::get('/groupcontent/create/{group_id}', [GroupContentController::class, 'create'])->name('groupcontent.create');
     Route::post('/groupcontent/store/{group_id}', [GroupContentController::class, 'store'])->name('groupcontent.store');
     Route::get('/groupcontent/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
+  
+    Route::get('/groupcontent/update/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
     // Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 
     // リクエスト処理
@@ -56,10 +65,9 @@ Route::middleware('auth')->group(function () {
   
 });
 
-
-Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+//ログインしなくても見られる
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/search/result/{id}', [SearchController::class, 'show'])->name('search.result.detail');
-// Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
 Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 Route::get('/tweetshow/{id}', [TweetController::class, 'show'])->name('tweet.showopen');
 
@@ -67,14 +75,11 @@ Route::get('/', function () {
     return view('welcome');
     })->name('welcome');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/dashboard', [TweetController::class, 'dashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// プロフィール
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

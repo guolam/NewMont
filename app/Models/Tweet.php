@@ -10,9 +10,18 @@ class Tweet extends Model
   use HasFactory;
 
 protected $fillable = [
-    // 他のフィールドとともに
-    'is_public',
-];
+       
+        'tweet',
+        'perfecture',
+        'date',
+        'mont',
+        'description',
+        'parking',
+        'spring',
+        'food',
+        'image',
+        'is_public',
+    ];
 
   protected $guarded = [
     'id',

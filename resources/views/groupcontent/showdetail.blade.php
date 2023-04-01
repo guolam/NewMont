@@ -1,9 +1,12 @@
+<!--showdetail.blade.php-->
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('山旅') }}
         </h2>
     </x-slot>
+
 
     <body>
         <div class="py-12">

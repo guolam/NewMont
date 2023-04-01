@@ -47,7 +47,7 @@ class TweetController extends Controller
      */
      public function store(Request $request)
      {
-       
+       dd($request->all());
        //新しい変数を定義する
       $tweet = new tweet();
        //tweetの変数がrequestで受け取った
@@ -107,8 +107,8 @@ class TweetController extends Controller
  
         // フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
    
-    //   $data = $request->merge(['user_id' => Auth::user()->id])->all();
-    // $result = Tweet::create($data);
+        // $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        // $result = Tweet::create($data);
         
         //create.bladeから送ってきたものを、全て、送信？？
         // $result = Tweet::create($request->all());
@@ -173,27 +173,37 @@ public function show($id)
 
   
     public function update(Request $request, $id)
-    {
-      //バリデーション
-      $validator = Validator::make($request->all(), [
-        'tweet' => 'required | max:191',
+{
+    //バリデーション
+    $validator = Validator::make($request->all(), [
+        'tweet' => 'required | max:255',
+        'perfecture' => 'required',
         'description' => 'required',
         'parking' => 'required',
-      ]);
-      
-      //バリデーション:エラー
-      if ($validator->fails()) {
-        return redirect()
-          ->route('tweet.edit', $id)
-          ->withInput()
-          ->withErrors($validator);
-      }
-      
-      //データ更新処理
-      $result = Tweet::find($id)->update($request->all());
-      return redirect()->route('tweet.create');
+    ]);
 
+    //バリデーション:エラー
+    if ($validator->fails()) {
+        return redirect()
+            ->route('tweet.edit', $id)
+            ->withInput()
+            ->withErrors($validator);
     }
+
+    // tweetモデルインスタンスの取得
+    $tweet = Tweet::find($id);
+
+    // バリデーションが成功したデータを更新
+    $tweet->update($request->all());
+
+    // リダイレクト
+    return redirect()->route('tweet.index')->with('success', 'ツイートが更新されました');
+}
+
+    
+    
+ 
+
 
 
     /**

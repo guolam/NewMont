@@ -27,8 +27,6 @@ class GroupContentController extends Controller
     return response()->view('groupcontent.index',compact('group_contents'));
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -166,9 +164,13 @@ public function showdetail($id)
      */
     public function edit($id)
     {
-      $group_create = group_create::find($id);
-      return response()->view('groupcontent.edit', compact('group_create'));
+      $group_content = GroupContent::find($id);
+      return response()->view('groupcontent.edit', compact('group_content'));
     }
+
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -181,7 +183,8 @@ public function showdetail($id)
     {
       //バリデーション
       $validator = Validator::make($request->all(), [
-        'tweet' => 'required | max:191',
+        'tweet' => 'required | max:255',
+        'perfecture' => 'required',
         'description' => 'required',
         'parking' => 'required',
       ]);
@@ -189,14 +192,14 @@ public function showdetail($id)
       //バリデーション:エラー
       if ($validator->fails()) {
         return redirect()
-          ->route('group_create.edit', $id)
+          ->route('groupContent.edit', $id)
           ->withInput()
           ->withErrors($validator);
       }
       
       //データ更新処理
       $result = Tweet::find($id)->update($request->all());
-      return redirect()->route('groupcontent.create');
+      return redirect()->route('group.show',['group' => $request->group_id]);
 
     }
 
