@@ -24,7 +24,7 @@ class TweetController extends Controller
     {
         //
         $tweets = Tweet::getAllOrderByUpdated_at();
-        return response()->view('tweet.index',compact('tweets'));
+        return response()->view('dashboard',compact('tweets'));
        
     }
 
