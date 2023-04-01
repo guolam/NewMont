@@ -29,8 +29,8 @@
 
     <body class="antialiased">
         <div class="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        
-            <img src="{{ Storage::url('public/image/banner.png')}}" alt="YAMOBEの画像" class="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mx-auto mb-4">
+       
+            <img src="{{ asset('image/banner.png')}}" alt="YAMOBEの画像" class="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mx-auto mb-4">
          <div class="mt-4 flex flex-col sm:flex-row items-center">
             <div class="mt-8 ">
                 <h2 class="text-lg mb-4">ログインせずに検索</h2>
