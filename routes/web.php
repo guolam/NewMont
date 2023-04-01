@@ -75,7 +75,7 @@ Route::get('/', function () {
     return view('welcome');
     })->name('welcome');
 
-Route::get('/dashboard', [TweetController::class, 'dashboard'])
+Route::get('/dashboard', [TweetController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
