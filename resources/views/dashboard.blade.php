@@ -40,7 +40,7 @@
                  
                   <!-- 条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->
                
-                   @if (Auth::check() && ($tweet->is_public || $tweet->user_id === Auth::user()->id))
+                   @if (Auth::check() && ($tweet->user_id === Auth::user()->id))
                   <!-- 更新ボタン -->
                   <form action="{{ route('tweet.edit',$tweet->id) }}" method="GET" class="text-left">
                   @csrf

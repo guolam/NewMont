@@ -11,48 +11,57 @@
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
                     @include('common.errors')
                     @if(session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     @foreach($groups as $group)
-                        @if(Auth::user()->id === $group->user_id)
-                            <h2>リクエスト中: {{ $group->group_name }}</h2>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>グループ名</th>
-                                        <th>申請ユーザー</th>
-                                        <th>承認・拒否</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($pending_requests as $request)
-                                        @if($request->group_id === $group->id)
-                                            <tr>
-                                                <td>{{ $request->group->group_name }}</td>
-                                                <td>{{ $request->user->name }}</td>
-                                                <td>
-                                                    <form action="{{ route('group_requests.approve', $request->id) }}" method="POST">
-                                                        @csrf
-                                                        
-                                                        <button type="submit" class="btn btn-success">承認</button>
-                                                    </form>
-                                                    
-                                                    
-                                                    <form action="{{ route('group_requests.reject', $request->id) }}" method="POST">
-                                                        @csrf
-                                                       
-                                                        <button type="submit" class="btn btn-danger">拒否</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
+                    @if(Auth::user()->id === $group->user_id)
+                 
+                    <h2>リクエスト中</h2>
+       
+                    <table class="table w-full">
+                        <thead>
+                             <tr class="space-y-4">
+                                <th class="w-1/3 text-center">グループ名</th>
+                                <th class="w-1/3 text-center">申請ユーザー</th>
+                                <th class="w-1/3 text-center">承認・拒否</th>
+                            </tr>
+                            <tr class="h-4"></tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pending_requests as $request)
+                            @if($request->group_id === $group->id)
+                            <tr class="space-y-4">
+                                <td class="w-1/3 text-center pb-4">{{ $request->group->group_name }}</td>
+                                <td class="w-1/3 text-center pb-4">{{ $request->user->name }}</td>
+                                <td class="w-1/3 text-center pb-4">
+                                    <div class="flex justify-center">
+                                        <form action="{{ route('group_requests.approve', $request->id) }}" method="POST"
+                                            class="inline-block">
+                                            @csrf
+                                            <x-secondary-button>
+                                                承認
+                                            </x-secondary-button>
+                                        </form>
+
+                                        <form action="{{ route('group_requests.reject', $request->id) }}" method="POST"
+                                            class="inline-block ml-4 mt-5">
+                                            @csrf
+                                            <x-primary-button>
+                                                拒否
+                                            </x-primary-button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="h-4"></tr>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
                     @endforeach
                 </div>
             </div>

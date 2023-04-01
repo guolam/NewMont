@@ -1,3 +1,4 @@
+<!--group.index-->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -42,26 +43,40 @@
                                 <div id="group"></div>
                                 <div class="py-4">
   
-                                <!--やりたいことグループに加入する-->
-                                @include('group_requests.create', ['group' => $group])
+                                
 
                          <!-- 所属メンバーのみがアクセスできる -->
                         @if(Auth::user()->isMemberOf($group))
+                        
                             <a href="{{ route('group.show',$group->id) }}">
-                                <p class="text-left text-gray-800 dark:text-gray-200">グループ名</p>
-                                <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
-                                    {{$group->group_name}}</h3>
-                                <p class="text-left text-gray-800 dark:text-gray-200">グループ詳細</p>
-                                <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
-                                    {{$group->description}}</h3>
+                                
+                                <p class="text-left text-gray-800 dark:text-gray-200"></p>
+                                <div class="flex">
+                                <h2 class="text-left font-bold text-xl text-gray-800 dark:text-gray-200 mr-2">
+                                    {{$group->group_name}}</h2>
+                                
+                                    @include('group_requests.create', ['group' => $group])
+                                </div>
+                                <div class="flex">
+                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">グループ詳細　</p>
+                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">
+                                    {{$group->description}}</p>
+                                </div>
                             </a>
                         @else
-                        <p class="text-left text-gray-800 dark:text-gray-200">グループ名</p>
-                                <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
-                                    {{$group->group_name}}</h3>
-                                <p class="text-left text-gray-800 dark:text-gray-200">グループ詳細</p>
-                                <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
-                                    {{$group->description}}</h3>
+                         
+                            <p class="text-left text-gray-800 dark:text-gray-200"></p>
+                                <div class="flex">
+                                <h2 class="text-left font-bold text-xl text-gray-800 dark:text-gray-200 mr-2">
+                                    {{$group->group_name}}</h2>
+                                
+                                    @include('group_requests.create', ['group' => $group])
+                                </div>
+                                <div class="flex">
+                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">グループ詳細　</p>
+                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">
+                                    {{$group->description}}</p>
+                                </div>
                         @endif
                                 </div>
                             </td>

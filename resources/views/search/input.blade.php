@@ -3,7 +3,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('検索') }}
+      {{ __('キーワードから検索') }}
     </h2>
   </x-slot>
 
@@ -15,8 +15,9 @@
           <form class="mb-6" action="{{ route('search.result') }}" method="GET">
             @csrf
             <div class="flex flex-col mb-4">
-              <x-input-label for="keyword" :value="__('Keyword')" />
-              <x-text-input id="keyword" class="block mt-1 w-full" type="text" name="keyword" :value="old('keyword')" autofocus />
+              <x-input-label for="keyword" :value="__('キーワード')" />
+              <input id="keyword" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent" type="text" name="keyword" placeholder="例、くじゅう連山" autofocus>
+
             </div>
             <div class="flex items-center justify-end mt-4">
               <x-primary-button class="ml-3">

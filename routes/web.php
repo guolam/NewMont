@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
     Route::resource('tweet', TweetController::class);
     
-    Route::get('/mypage', [UserController::class, 'show'])->name('users.show');
+    // 所属グループ
+    Route::get('/mygroup', [UserController::class, 'show'])->name('users.show');
     
     Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
@@ -53,7 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/groupcontent/create/{group_id}', [GroupContentController::class, 'create'])->name('groupcontent.create');
     Route::post('/groupcontent/store/{group_id}', [GroupContentController::class, 'store'])->name('groupcontent.store');
     Route::get('/groupcontent/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
-  
     Route::get('/groupcontent/update/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
     // Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 
