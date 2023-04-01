@@ -8,50 +8,42 @@
         <!-- Logo -->
         <div class="shrink-0 flex items-center">
           <a href="{{ (Auth::check()) ? route('dashboard') : route('welcome') }}">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+            <x-application-logo class="block h-9 w-2 fill-current text-gray-800 dark:text-gray-200" />
           </a>
         </div>
         @auth
         <!-- Navigation Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-            {{ __('ダッシュボード') }}
+            {{ __('ソロ旅') }}
           </x-nav-link>
         </div>
         <!-- 🔽 一覧ページへのリンクを追加 -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
-            {{ __('一覧') }}
-          </x-nav-link>
-        </div>
+        
         <!-- 🔽 作成ページへのリンクを追加 -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('tweet.create')" :active="request()->routeIs('tweet.create')">
-            {{ __('新規作成') }}
-          </x-nav-link>
-        </div>
+
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('group.index')" :active="request()->routeIs('group.index')">
-            {{ __('グループ') }}
+            {{ __('グループ旅') }}
           </x-nav-link>
         </div>
+        
+        
         <!-- 🔽 マイページへのリンクを追加 -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('tweet.mypage')" :active="request()->routeIs('tweet.mypage')">
-            {{ __('マイページ') }}
-          </x-nav-link>
-        </div>
+        
         <!-- 🔽 タイムラインへのリンクを追加 -->
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('tweet.timeline')" :active="request()->routeIs('tweet.timeline')">
-            {{ __('タイムライン') }}
-          </x-nav-link>
-        </div>
+        
         <!-- 🔽 検索画面へのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
-            {{ __('検索') }}
+            {{ __('旅検索') }}
+          </x-nav-link>
+        </div>
+        
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
+            {{ __('一覧 - 仮') }}
           </x-nav-link>
         </div>
       </div>
@@ -112,37 +104,25 @@
     <!-- 🔽 一覧ページへのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
-        {{ __('一覧') }}
+        {{ __('一覧 - 仮') }}
       </x-responsive-nav-link>
     </div>
     <!-- 🔽 作成ページへのリンクを追加 -->
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('tweet.create')" :active="request()->routeIs('tweet.create')">
-        {{ __('新規作成') }}
-      </x-responsive-nav-link>
-    </div>
+   
      <!-- 🔽 作成ページへのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('group.index')" :active="request()->routeIs('group.index')">
-        {{ __('グループ作成') }}
+        {{ __('グループ') }}
       </x-responsive-nav-link>
     </div>
     <!-- 🔽 マイページへのリンクを追加 -->
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('tweet.mypage')" :active="request()->routeIs('tweet.mypage')">
-        {{ __('マイページ') }}
-      </x-responsive-nav-link>
-    </div>
+    
     <!-- 🔽 タイムラインへのリンクを追加 -->
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('tweet.timeline')" :active="request()->routeIs('tweet.timeline')">
-        {{ __('タイムライン') }}
-      </x-responsive-nav-link>
-    </div>
+   
     <!-- 🔽 検索画面へのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">
-        {{ __('キーワード検索') }}
+        {{ __('旅検索') }}
       </x-responsive-nav-link>
     </div>
 
