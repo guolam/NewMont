@@ -99,7 +99,7 @@ class TweetController extends Controller
         // バリデーション:エラー
         if ($validator->fails()) {
           return redirect()
-            ->route('tweet.index')
+            ->route('dashboard')
             ->withInput()
             ->withErrors($validator);
         }
