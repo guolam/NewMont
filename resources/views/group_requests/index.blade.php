@@ -40,11 +40,11 @@
                                                         
                                                         <form action="{{ route('group_requests.approve', $request->id) }}" method="POST">
                                 @csrf
-                                <x-primary-button type="submit" class="btn btn-success mr-4">承認</x-primary-button>
+                                <x-secondary-button type="submit" class="btn btn-success mr-4">承認</x-secondary-button>
                             </form>
                             <form action="{{ route('group_requests.reject', $request->id) }}" method="POST">
                                 @csrf
-                                <x-secondary-button type="submit" class="btn btn-danger ml-4">拒否</x-secondary-button>
+                                <x-primary-button type="submit" class="btn btn-danger ml-4">拒否</x-primary-button>
                                                     </form>
                                                     </div>
                                                 </td>
