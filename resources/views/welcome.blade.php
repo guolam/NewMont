@@ -47,7 +47,7 @@
                     山旅を日常に<br><br>
                
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mb-2">ログイン</a>
-                    <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">登録されたい方はこちら</a>
+                    <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline ml-4">登録されたい方はこちら</a>
                 </div>
             </div>
         </div>
