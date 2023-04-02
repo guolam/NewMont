@@ -67,7 +67,7 @@
                             <div id="mapFood" style="height:500px" class="w-960"></div>
 
                             <div class="flex flex-col mb-4">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">所感</p>
+                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">旅の感想</p>
                                 <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="description">
                                     {{$group_content->description}}
                                 </p>

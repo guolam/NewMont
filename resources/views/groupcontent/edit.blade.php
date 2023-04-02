@@ -209,7 +209,7 @@
                         <div id="mapFood" style="height:500px" class="w-960"> </div>
 
                         <div class="flex flex-col mb-4">
-                            <x-input-label for="description" :value="__('所感')" />
+                            <x-input-label for="description" :value="__('旅の感想')" />
                             <x-text-input id="description" class="block mt-1 w-full" type="text" name="description"
                                 value="{{ $group_content->description }}" required autofocus />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
