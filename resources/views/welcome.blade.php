@@ -35,7 +35,7 @@
             <div class="mt-8 ">
                 <h3 class="text-lg mb-4">ログインせずに検索</h3>
                 <form action="{{ route('search') }}" method="GET" class="flex items-center">
-                    <input type="text" name="query" placeholder="キーワードを入力" class="border rounded px-4 py-2">
+                    <input type="text" name="query" placeholder="山の名前を入力してください" class="border rounded px-4 py-2">
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">検索</button>
                 </form>
             </div>
@@ -46,8 +46,13 @@
                     Peak Experiences, Everyday Journeys.<br><br>
                     山旅を日常に<br><br>
                
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mb-2">ログイン</a>
-                    <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline ml-4">登録されたい方はこちら</a>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
+                   <a href="{{ route('login') }}" >ログイン</a>
+                    </button>
+                   
+                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
+                    <a href="{{ route('register') }}" >山や旅の思い出を登録されたい方はこちら</a>
+                    </button>
                 </div>
             </div>
         </div>

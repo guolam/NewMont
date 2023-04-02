@@ -23,12 +23,14 @@ use App\Http\Controllers\GroupContentController;
 */
 
 Route::middleware('auth')->group(function () {
-    // コンテンツのサーチ
+    // コンテンツのsearch
     Route::get('/tweet/search/input', [SearchController::class, 'create'])->name('search.input');
     Route::get('/tweet/search/result', [SearchController::class, 'index'])->name('search.result');
+    
+    //まだ使ってない。
     Route::get('/tweet/timeline', [TweetController::class, 'timeline'])->name('tweet.timeline');
     
-    // ユーザーのサイト
+    // ユーザーのサイト (ソロの場合)
     Route::get('user/{user}', [FollowController::class, 'show'])->name('follow.show');
     Route::post('user/{user}/follow', [FollowController::class, 'store'])->name('follow');
     Route::post('user/{user}/unfollow', [FollowController::class, 'destroy'])->name('unfollow');
