@@ -21,32 +21,77 @@ class SearchController extends Controller
       $tweets = Tweet::query()
         ->where('tweet', 'like', "%{$keyword}%")
         ->orWhere('description', 'like', "%{$keyword}%")
+        ->orWhere('perfecture', 'like', "%{$keyword}%")
         ->orWhereIn('user_id', $users)
         ->get();
       return response()->view('tweet.index', compact('tweets'));
     }
 
 
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
         
-        //TweetsとGroupContentsのテーブルから検索
-        $tweets = Tweet::query()
-            ->where('tweet', 'like', "%{$query}%")
-            ->orWhere('description', 'like', "%{$query}%")
-            ->get();
+    //     //TweetsとGroupContentsのテーブルから検索
+    //     $tweets = Tweet::query()
+    //         ->where('tweet', 'like', "%{$query}%")
+    //         ->orWhere('description', 'like', "%{$query}%")
+    //         ->get();
     
-        $groupContents = GroupContent::query()
-            ->where('tweet', 'like', "%{$query}%")
-            ->orWhere('description', 'like', "%{$query}%")
-            ->get();
+    //     $groupContents = GroupContent::query()
+    //         ->where('tweet', 'like', "%{$query}%")
+    //         ->orWhere('description', 'like', "%{$query}%")
+    //         ->get();
     
-        return view('search_results', [
-            'tweets' => $tweets,
-            'groupContents' => $groupContents
-        ]);
-    }
+    //     return view('search_results', [
+    //         'tweets' => $tweets,
+    //         'groupContents' => $groupContents
+    //     ]);
+    // }
+
+
+
+public function search(Request $request)
+{
+    // インプットの時
+    $query = $request->input('query');
+    // perfectureだけ選ぶ時
+    $prefecture = $request->input('prefecture');
+    
+    //TweetsとGroupContentsのテーブルから検索
+    $tweets = Tweet::query()
+        ->where(function($q) use ($query, $prefecture) {
+            $q->when($prefecture, function($query, $prefecture) {
+                return $query->where('perfecture', $prefecture);
+            })
+            ->when($query, function($query, $keyword) {
+                return $query->where(function($q) use ($keyword) {
+                    $q->where('tweet', 'like', "%{$keyword}%")
+                      ->orWhere('description', 'like', "%{$keyword}%");
+                });
+            });
+        })
+        ->get();
+
+    $groupContents = GroupContent::query()
+        ->where(function($q) use ($query, $prefecture) {
+            $q->when($prefecture, function($query, $prefecture) {
+                return $query->where('perfecture', $prefecture);
+            })
+            ->when($query, function($query, $keyword) {
+                return $query->where(function($q) use ($keyword) {
+                    $q->where('tweet', 'like', "%{$keyword}%")
+                      ->orWhere('description', 'like', "%{$keyword}%");
+                });
+            });
+        })
+        ->get();
+
+    return view('search_results', [
+        'tweets' => $tweets,
+        'groupContents' => $groupContents
+    ]);
+}
 
 
     public function show($id)

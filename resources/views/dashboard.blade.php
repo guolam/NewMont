@@ -33,7 +33,11 @@
                   
                   <!-- 🔽 所属の人を追加 -->
                   <div id="example"></div>
+                  <div class="flex justify-between">
+                  <p class="text-left text-gray-800 dark:text-gray-200">{{$tweet->perfecture}}</p>
                   <p class="text-left text-gray-800 dark:text-gray-200">{{$tweet->user->name}}</p>
+                 
+                  </div>
                   <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">{{$tweet->tweet}}</h3>
                 </a>
                 <div class="flex">

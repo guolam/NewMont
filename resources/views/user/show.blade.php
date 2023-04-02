@@ -1,4 +1,5 @@
 <!-- resources/views/user/show.blade.php -->
+<!--フォロワー-->
 
 <x-app-layout>
   <x-slot name="header">
