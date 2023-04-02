@@ -71,9 +71,8 @@
                                 <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="description">
                                     {{$group_content->description}}
                                 </p>
-                                <img src="{{ asset('storage/image/'.$group_content->image)}}" class="mx-auto"
-                                    style="height:300px;">
-                            </div> <!-- Add closing div tag -->
+                                <img src="{{ asset('storage/image/'.$group_content->image)}}" class="mx-auto" style="height:300px; object-fit: cover; display:block;">
+                            </div> 
                             <div class="flex items-center justify-end mt-4">
                                 <a href="{{ url()->previous() }}">
                                     <x-secondary-button class="ml-3">
