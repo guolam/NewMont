@@ -28,7 +28,7 @@
                                 </p>
                             </div> <!-- Add closing div tag -->
                             <div class="flex flex-col mb-4">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">道都府県<</p>
+                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">道都府県</p>
                                 <p class="py-2 px-3 text-gray-800 " id="perfecture">
                                
                                     {{$group_content->perfecture}}
@@ -39,33 +39,47 @@
                                 <p class="py-2 px-3 text-gray-800 " id="tweet">
                                     {{$group_content->tweet}}
                                 </p>
-                            </div> <!-- Add closing div tag -->
+                            </div>
                             @include('map/contentYama')
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">駐車場</p>
                                 <p class="py-2 px-3 text-gray-800 " id="parking">
                                     {{$group_content->parking}}
                                 </p>
-                            </div> <!-- Add closing div tag -->
+                            </div> 
 
-                            <!--ここに入れたい、駐車場の地図-->
+                            <!--駐車場の地図-->
                             <div id="map" style="height:500px" class="w-960"></div>
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">温泉</p>
                                 <p class="py-2 px-3 text-gray-800 " id="spring">
-                                    {{$group_content->spring}}
+                                    @if($group_content->spring)
+                                   {{$group_content->spring}}
+                                     @else
+                                    <p>なし</p>
+                                     @endif
+                                    
                                 </p>
-                            </div> <!-- Add closing div tag -->
+                            </div> 
+                            <!--温泉地図-->
+                             @if($group_content->spring)
                             <div id="mapSpring" style="height:500px" class="w-960"></div>
+                             @endif
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">ごはん</p>
                                 <p class="py-2 px-3 text-gray-800 " id="food">
+                                    @if($group_content->food)
                                     {{$group_content->food}}
+                                     @else
+                                    <p>なし</p>
+                                     @endif
                                 </p>
-                            </div> <!-- Add closing div tag -->
+                            </div>
+                             @if($group_content->food)
                             <div id="mapFood" style="height:500px" class="w-960"></div>
+                            @endif
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">旅の感想</p>

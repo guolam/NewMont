@@ -111,7 +111,7 @@ function initMap() {
   const autocompleteFood = new google.maps.places.Autocomplete(inputFood, optionsFood);
 
 
-// 地図表示？
+// 地図表示
   const infowindowFood = new google.maps.InfoWindow();
   const infowindowContentFood = document.getElementById("infowindowFood-content");
 
