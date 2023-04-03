@@ -14,32 +14,32 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//     public function index(Request $request)
-//     {
-//       $keyword = trim($request->keyword);
-//       $users  = User::where('name', 'like', "%{$keyword}%")->pluck('id')->all();
-//       $tweets = Tweet::query()
-//   ->where(function($query) use ($keyword) {
-//       $query->where('tweet', 'like', "%{$keyword}%")
-//             ->orWhere('description', 'like', "%{$keyword}%")
-//             ->orWhere('perfecture', 'like', "%{$keyword}%");
-//   })
-//   ->orWhereIn('user_id', $users)
-//   ->get();
-//       return response()->view('tweet.index', compact('tweets'));
-//     }
+    public function index(Request $request)
+    {
+      $keyword = trim($request->keyword);
+      $users  = User::where('name', 'like', "%{$keyword}%")->pluck('id')->all();
+      $tweets = Tweet::query()
+  ->where(function($query) use ($keyword) {
+      $query->where('tweet', 'like', "%{$keyword}%")
+            ->orWhere('description', 'like', "%{$keyword}%")
+            ->orWhere('perfecture', 'like', "%{$keyword}%");
+  })
+  ->orWhereIn('user_id', $users)
+  ->get();
+      return response()->view('dashboard', compact('tweets'));
+    }
 
 
-public function index(Request $request)
-{
-    $keyword = $request->input('perfecture');
+// public function index(Request $request)
+// {
+//     $keyword = $request->input('perfecture');
 
-    $tweets = Tweet::query()
-        ->where('perfecture', 'like', "%{$keyword}%")
-        ->get();
+//     $tweets = Tweet::query()
+//         ->where('perfecture', 'like', "%{$keyword}%")
+//         ->get();
 
-    return response()->view('dashboard', compact('tweets'));
-}
+//     return response()->view('dashboard', compact('tweets'));
+// }
 
     // public function search(Request $request)
     // {
@@ -64,30 +64,56 @@ public function index(Request $request)
     //     ]);
     // }
 
+// public function search(Request $request)
+// {
+//     $query = $request->input('query');
+//     $keyword = $request->input('perfecture');
+        
+//     //TweetsとGroupContentsのテーブルから検索
+//     $tweets = Tweet::query()
+//         ->where('tweet', 'like', "%{$query}%")
+//         ->orWhere('description', 'like', "%{$query}%")
+//         ->orWhere('perfecture', 'like', "%{$keyword}%")
+//         ->get();
+
+//     $groupContents = GroupContent::query()
+//         ->where('tweet', 'like', "%{$query}%")
+//         ->orWhere('description', 'like', "%{$query}%")
+//         ->orWhere('perfecture', 'like', "%{$keyword}%")
+//         ->get();
+
+//     return view('search_results', [
+//         'tweets' => $tweets,
+//         'groupContents' => $groupContents
+//     ]);
+// }
+
+
 public function search(Request $request)
 {
-    $query = $request->input('query');
-    $keyword = $request->input('perfecture');
+    $query = $request->input('keyword');
+    $prefecture = $request->input('prefecture');
         
     //TweetsとGroupContentsのテーブルから検索
     $tweets = Tweet::query()
         ->where('tweet', 'like', "%{$query}%")
         ->orWhere('description', 'like', "%{$query}%")
-        ->orWhere('perfecture', 'like', "%{$keyword}%")
+        ->where('perfecture', $prefecture)
         ->get();
+        
+    dd($tweets);
 
     $groupContents = GroupContent::query()
         ->where('tweet', 'like', "%{$query}%")
         ->orWhere('description', 'like', "%{$query}%")
-        ->orWhere('perfecture', 'like', "%{$keyword}%")
+        ->where('perfecture', $prefecture)
         ->get();
-
+        
     return view('search_results', [
         'tweets' => $tweets,
         'groupContents' => $groupContents
     ]);
 }
-
 
 // public function search(Request $request)
 // {

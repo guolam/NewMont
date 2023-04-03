@@ -27,7 +27,8 @@
 
                         <x-input-label :value="__('公開設定')" />
                         <div class="flex items-center mt-2">
-                            <input id="public" type="radio" name="is_public" value="1"
+                            <input id="public" type="radio" name=
+                            "is_public" value="1"
                                 class="form-radio h-5 w-5 text-blue-600" {{ $group_content->is_public == 1 ? 'checked' :
                             '' }}>
                             <label for="public" class="ml-2">{{ __('公開') }}</label>
