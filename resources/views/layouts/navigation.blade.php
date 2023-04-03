@@ -7,7 +7,7 @@
     <div class="flex justify-between h-16">
       <div class="flex">
         <!-- Logo -->
-        <div class="shrink-0 flex items-center">
+        <div class="shrink-0 flex items-center" aria-label="YAMOBE - 山旅を日常に - Peak Experiences, Everyday Journeys">
           <a href="{{ (Auth::check()) ? route('dashboard') : route('welcome') }}">
             <x-application-logo class="block h-9 w-2 fill-current text-gray-800" />
           </a>
@@ -19,9 +19,6 @@
             {{ __('ソロ旅') }}
           </x-nav-link>
         </div>
-        <!-- 🔽 一覧ページへのリンクを追加 -->
-        
-        <!-- 🔽 作成ページへのリンクを追加 -->
 
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -40,11 +37,8 @@
           </x-nav-link>
         </div>
         
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
-            {{ __('一覧 - 仮') }}
-          </x-nav-link>
-        </div>
+        <!--tweet.index -->
+        
       </div>
 
       <!-- Settings Dropdown -->
@@ -100,24 +94,14 @@
         {{ __('ダッシュボード') }}
       </x-responsive-nav-link>
     </div>
-    <!-- 🔽 一覧ページへのリンクを追加 -->
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
-        {{ __('一覧 - 仮') }}
-      </x-responsive-nav-link>
-    </div>
-    <!-- 🔽 作成ページへのリンクを追加 -->
-   
-     <!-- 🔽 作成ページへのリンクを追加 -->
+    <!-- 🔽 一覧ページへのリンクを追加 tweet.index-->
+
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('group.index')" :active="request()->routeIs('group.index')">
         {{ __('グループ') }}
       </x-responsive-nav-link>
     </div>
-    <!-- 🔽 マイページへのリンクを追加 -->
     
-    <!-- 🔽 タイムラインへのリンクを追加 -->
-   
     <!-- 🔽 検索画面へのリンクを追加 -->
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('search.input')" :active="request()->routeIs('search.input')">

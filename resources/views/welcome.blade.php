@@ -42,7 +42,12 @@
                     </button>
                    
                      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
-                    <a href="{{ route('register') }}" >山や旅の思い出を登録されたい方はこちら</a>
+                    <a href="{{ route('register') }}" >
+                       <div class="flex">
+                        山や旅の思い出を登録されたい方はこちら
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff"><defs><style>.cls-637b715ef95e86b59c579e66-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-637b715ef95e86b59c579e66-1" d="M17.62,23.28V20.47l.09-.17a16.93,16.93,0,0,0,1.79-7.58h0a1.89,1.89,0,0,0-1.61-1.86l-5-.7V3.59a1.84,1.84,0,0,0-.56-1.32,1.83,1.83,0,0,0-1.48-.54,1.94,1.94,0,0,0-1.71,2V13.91l-1.3-1.3A2,2,0,0,0,6.49,12a2,2,0,0,0-1.41.58,2,2,0,0,0,0,2.81l5,5v2.81"></path></svg>
+                        </div>
+                    </a>
                     </button>
                 </div>
             </div>

@@ -95,7 +95,7 @@ class GroupContentController extends Controller
     // バリデーション
     $validator = Validator::make($request->all(), [
     'is_public' => 'required|boolean',
-    'tweet' => 'required | max:300',
+    'tweet' => 'required | max:300',//山
     'description' => 'required',
     'image' => 'required',
     ]);

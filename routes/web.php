@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     // 所属グループ
     Route::get('/mygroup', [UserController::class, 'show'])->name('users.show');
     
+    // グループ
     Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
     
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
     Route::get('/groupcontent/{id}/edit', [GroupContentController::class, 'edit'])->name('groupcontent.edit');
     Route::put('/groupcontent/update/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
+    Route::delete('/groupcontent/delete/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.destroy');
     // Route::get('/groupcontent/show/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
    
     

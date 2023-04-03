@@ -4,4 +4,5 @@
 
 <!--<img src="{{ Storage::url('public/image/icon.png')}}" >-->
 
+
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-63ce7444ea57ea6c838005e0-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><polygon class="cls-63ce7444ea57ea6c838005e0-1" points="20.59 22.5 3.41 22.5 12 11.04 20.59 22.5"></polygon><rect class="cls-63ce7444ea57ea6c838005e0-1" x="12" y="1.5" width="5.73" height="4.77"></rect><line class="cls-63ce7444ea57ea6c838005e0-1" x1="12" y1="11.05" x2="12" y2="6.27"></line></svg>

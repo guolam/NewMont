@@ -13,6 +13,7 @@
                     @include('common.errors')
 
                     <div class="flex flex-col mb-4">
+                        <div class="flex justify-center mb-4">
                         <div class="flex items-center justify-end mt-4">
                             <x-href-button class="ml-3" :href="route('group.create')"
                                 :active="request()->routeIs('group.create')">
@@ -30,6 +31,7 @@
                                 :active="request()->routeIs('users.show')">
                                 {{ __('マイグループ') }}
                             </x-href-button>
+                        </div>
                         </div>
                         @foreach ($groups as $group)
                         <ul>
@@ -53,7 +55,7 @@
                                 <h2 class="text-left font-bold text-xl text-gray-800  mr-2">
                                     {{$group->group_name}}</h2>
                                 
-                                    @include('group_requests.create', ['group' => $group])
+                                   
                                 </div>
                                 <div class="flex">
                                 <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
@@ -62,19 +64,19 @@
                                 </div>
                             </a>
                         @else
-                         @include('group_requests.create', ['group' => $group])
+                        
                             <p class="text-left text-gray-800 "></p>
                                 <div class="flex">
                                 <h2 class="text-left font-bold text-xl text-gray-800  mr-2">
                                     {{$group->group_name}}</h2>
-                                
-                                    @include('group_requests.create', ['group' => $group])
+
                                 </div>
                                 <div class="flex">
                                 <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
                                 <p class="text-left text-lg text-gray-800 ">
                                     {{$group->description}}</p>
                                 </div>
+                                 @include('group_requests.create', ['group' => $group])
                         @endif
                                 </div>
                             </td>
