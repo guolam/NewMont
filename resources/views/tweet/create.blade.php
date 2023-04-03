@@ -9,8 +9,8 @@
 
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-      <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
           @include('common.errors')
           <form id="address-form" class="mb-6" action="{{ route('tweet.store') }}" method="POST" enctype="multipart/form-data" autocomplete="on">
             @csrf
@@ -141,6 +141,7 @@
           
             <div id="mapSpring" style="height:500px" class="w-960"> </div>
 
+<!--飲食店-->
             <div class="flex flex-col mb-4">
               <p class="title"> </p>
               <label class="full-field">

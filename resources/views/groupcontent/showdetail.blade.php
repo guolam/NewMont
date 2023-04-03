@@ -92,7 +92,7 @@
                                 <a href="{{ url()->previous() }}">
                                     <x-secondary-button class="ml-3">
                                         {{ __('戻る') }}
-                                        </x-primary-button>
+                                    </x-primary-button>
                                 </a>
                             </div>
                         </div>

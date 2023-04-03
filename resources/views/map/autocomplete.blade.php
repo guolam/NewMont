@@ -108,8 +108,8 @@ function initMap() {
     strictBounds: false,
     types: ["establishment"],
   };
+ 
   const autocompleteFood = new google.maps.places.Autocomplete(inputFood, optionsFood);
-
 
 // 地図表示
   const infowindowFood = new google.maps.InfoWindow();
@@ -121,6 +121,7 @@ function initMap() {
     mapFood,
     anchorPoint: new google.maps.Point(0, -29),
   });
+  
   
   
 autocompleteFood.addListener("place_changed", () => {
@@ -193,10 +194,12 @@ autocompleteFood.addListener("place_changed", () => {
     strictBounds: false,
     types: ["establishment"],
   };
+  
+  // if (inputSpring) {
   const autocompleteSpring = new google.maps.places.Autocomplete(inputSpring, optionsSpring);
 
 
-// 地図表示？
+// 地図表示
   const infowindowSpring = new google.maps.InfoWindow();
   const infowindowContentSpring = document.getElementById("infowindowSpring-content");
 
@@ -206,7 +209,7 @@ autocompleteFood.addListener("place_changed", () => {
     mapSpring,
     anchorPoint: new google.maps.Point(0, -29),
   });
-  
+  // }
   
 autocompleteSpring.addListener("place_changed", () => {
   infowindowSpring.close();
