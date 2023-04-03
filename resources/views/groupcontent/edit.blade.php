@@ -1,4 +1,4 @@
-<!-- resources/views/tweet/edit.blade.php -->
+<!-- resources/views/groupcontent/edit.blade.php -->
 
 <x-app-layout>
     <x-slot name="header">
@@ -9,8 +9,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
+            <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200  ">
                     @include('common.errors')
                     <form class="mb-6"
                         action="{{ route('groupcontent.update', ['group_id' => $group_content->group_id]) }}"
@@ -157,20 +157,21 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col mb-4">
-                            <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
-                            <div class="relative">
-                                <select id="mont" type="text" name="mont" :value="old('mont')"
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                    <option value="なし" {{$group_content->mont == 'なし' ? 'selected' : '' }}></option>
-                                    <option value="百名山" {{ $group_content->mont == '百名山' ? 'selected' : '' }}>百名山
-                                    </option>
-                                    <option value="二百名山" {{ $group_content->mont == '二百名山' ? 'selected' : '' }}>二百名山
-                                    </option>
+                        
+                    <div class="flex flex-col mb-4">
+                        <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
+                        <div class="relative">
+                            <select id="mont" type="text" name="mont" :value="old('mont')"
+                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <option value="なし" {{$group_content->mont == 'なし' ? 'selected' : '' }}></option>
+                                <option value="百名山" {{ $group_content->mont == '百名山' ? 'selected' : '' }}>百名山
+                                </option>
+                                <option value="二百名山" {{ $group_content->mont == '二百名山' ? 'selected' : '' }}>二百名山
+                                </option>
 
-                                </select>
-                            </div>
+                            </select>
                         </div>
+                    </div>
 
                         @include('map/autocomplete')
                         <div class="flex flex-col mb-4">

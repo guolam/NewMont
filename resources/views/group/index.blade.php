@@ -8,8 +8,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
+            <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white  border-b border-gray-200  ">
                     @include('common.errors')
 
                     <div class="flex flex-col mb-4">
@@ -37,44 +37,42 @@
                         </ul>
                         
                         <tr class="hover:bg-gray-lighter">
-                            <td class="py-6 px-6 border-b border-gray-light dark:border-gray-600">
+                            <td class="py-6 px-6 border-b border-gray-light ">
 
                                
                                 <div id="group"></div>
                                 <div class="py-4">
-  
-                                
-
+                        
                          <!-- 所属メンバーのみがアクセスできる -->
                         @if(Auth::user()->isMemberOf($group))
                         
                             <a href="{{ route('group.show',$group->id) }}">
                                 
-                                <p class="text-left text-gray-800 dark:text-gray-200"></p>
+                                <p class="text-left text-gray-800 "></p>
                                 <div class="flex">
-                                <h2 class="text-left font-bold text-xl text-gray-800 dark:text-gray-200 mr-2">
+                                <h2 class="text-left font-bold text-xl text-gray-800  mr-2">
                                     {{$group->group_name}}</h2>
                                 
                                     @include('group_requests.create', ['group' => $group])
                                 </div>
                                 <div class="flex">
-                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">グループ詳細　</p>
-                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">
+                                <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
+                                <p class="text-left text-lg text-gray-800 ">
                                     {{$group->description}}</p>
                                 </div>
                             </a>
                         @else
-                         
-                            <p class="text-left text-gray-800 dark:text-gray-200"></p>
+                         @include('group_requests.create', ['group' => $group])
+                            <p class="text-left text-gray-800 "></p>
                                 <div class="flex">
-                                <h2 class="text-left font-bold text-xl text-gray-800 dark:text-gray-200 mr-2">
+                                <h2 class="text-left font-bold text-xl text-gray-800  mr-2">
                                     {{$group->group_name}}</h2>
                                 
                                     @include('group_requests.create', ['group' => $group])
                                 </div>
                                 <div class="flex">
-                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">グループ詳細　</p>
-                                <p class="text-left text-lg text-gray-800 dark:text-gray-200">
+                                <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
+                                <p class="text-left text-lg text-gray-800 ">
                                     {{$group->description}}</p>
                                 </div>
                         @endif

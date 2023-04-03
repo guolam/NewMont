@@ -38,7 +38,7 @@ public function index(Request $request)
         ->where('perfecture', 'like', "%{$keyword}%")
         ->get();
 
-    return response()->view('tweet.index', compact('tweets'));
+    return response()->view('dashboard', compact('tweets'));
 }
 
     // public function search(Request $request)

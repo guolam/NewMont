@@ -13,33 +13,33 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
         <style>
-      .nav-container {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 9999;
-        position: relative；
-      }
-      
-      .page-header {
-                margin-top: 4rem;
-                position: relative;
-                z-index: 1;
-            }
-    </style>
-
+          .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            position: relative；
+          }
+          
+          .page-header {
+                    margin-top: 4rem;
+                    position: relative;
+                    z-index: 1;
+                }
+        </style>
 
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100">
             <div class="nav-container">
             @include('layouts.navigation')
             </div>
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow page-header">
+                <header class="bg-white shadow page-header">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
