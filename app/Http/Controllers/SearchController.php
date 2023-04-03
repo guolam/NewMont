@@ -101,7 +101,6 @@ public function search(Request $request)
         ->where('perfecture', $prefecture)
         ->get();
         
-    dd($tweets);
 
     $groupContents = GroupContent::query()
         ->where('tweet', 'like', "%{$query}%")
