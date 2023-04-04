@@ -164,10 +164,11 @@ public function showdetail($id)
      */
     public function edit($id)
     {
+      $item = GroupContent::findOrFail($id);
       $group_content = GroupContent::find($id);
-      return response()->view('groupcontent.edit', compact('group_content'));
+      $currentImage = url('storage/image/' . $group_content->image);
+      return response()->view('groupcontent.edit', compact('group_content', 'currentImage'));
     }
-
 
 
 
@@ -181,21 +182,50 @@ public function showdetail($id)
      */
     public function update(Request $request, $id)
     {
-      //バリデーション
+      // バリデーション
       $validator = Validator::make($request->all(), [
-        'tweet' => 'required | max:255',
-        'perfecture' => 'required',
-        'description' => 'required',
-        'parking' => 'required',
+      'tweet' => 'required | max:255',
+      'perfecture' => 'required',
+      'description' => 'required',
+      'parking' => 'required',
+      'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       ]);
       
-      //バリデーション:エラー
-      if ($validator->fails()) {
-        return redirect()
-          ->route('groupContent.edit', $id)
-          ->withInput()
-          ->withErrors($validator);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('tweet.edit', $id)
+                ->withInput()
+                ->withErrors($validator);
+        }
+        
+        
+      
+      // content_groupモデルインスタンスの取得
+      $content_group = ContentGroup::find($id);
+      
+      
+      // 画像がアップロードされている場合
+      if ($request->hasFile('image')) {
+          // 古い画像ファイルを削除
+          if ($content_group->image) {
+              Storage::disk('public')->delete('image/' . $content_group->image);
+          }
+      
+          // 新しい画像ファイルを保存
+          $imageName = time() . '.' . $request->image->extension();
+          $request->image->storeAs('image', $imageName, 'public');
+          
+          // データベースの画像フィールドを更新
+          $content_group->image = $imageName;
       }
+      
+      // バリデーションが成功したデータを更新
+      $content_group->tweet = $request->tweet;
+      $content_group->perfecture = $request->perfecture;
+      $content_group->description = $request->description;
+      $content_group->parking = $request->parking;
+      $content_group->save();
       
       //データ更新処理
       $result = Tweet::find($id)->update($request->all());

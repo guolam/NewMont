@@ -9,8 +9,7 @@ use App\Models\Tweet;
 use App\Models\User;
 use Auth;
 use Symfony\Componet\HttpKernel\Exception\AccessDeniedHttpException;
-
-
+use Illuminate\Support\Facades\Storage;
 
 
 class TweetController extends Controller
@@ -165,24 +164,28 @@ public function show($id)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-      $tweet = Tweet::find($id);
-      return response()->view('tweet.edit', compact('tweet'));
-    }
+   public function edit($id)
+{
+    $item = Tweet::findOrFail($id);
+    $tweet = Tweet::find($id);
+    $currentImage = url('storage/image/' . $tweet->image);
+    return response()->view('tweet.edit', compact('tweet', 'currentImage'));
+}
+
 
   
     public function update(Request $request, $id)
 {
-    //バリデーション
+    // バリデーション
     $validator = Validator::make($request->all(), [
         'tweet' => 'required | max:255',
         'perfecture' => 'required',
         'description' => 'required',
         'parking' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    //バリデーション:エラー
+    // バリデーション:エラー
     if ($validator->fails()) {
         return redirect()
             ->route('tweet.edit', $id)
@@ -192,12 +195,33 @@ public function show($id)
 
     // tweetモデルインスタンスの取得
     $tweet = Tweet::find($id);
+    
+    // 画像がアップロードされている場合
+    if ($request->hasFile('image')) {
+        // 古い画像ファイルを削除
+        if ($tweet->image) {
+            Storage::disk('public')->delete('image/' . $tweet->image);
+        }
+    
+    // 新しい画像ファイルを保存
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('image', $imageName, 'public');
+    // データベースの画像フィールドを更新
+        $tweet->image = $imageName;
+    }
 
     // バリデーションが成功したデータを更新
-    $tweet->update($request->all());
+    // $tweet->update($request->all());
+    
+    // バリデーションが成功したデータを更新
+        $tweet->tweet = $request->tweet;
+        $tweet->perfecture = $request->perfecture;
+        $tweet->description = $request->description;
+        $tweet->parking = $request->parking;
+        $tweet->save();
 
     // リダイレクト
-    return redirect()->route('tweet.index')->with('success', 'ツイートが更新されました');
+    return redirect()->route('dashboard')->with('success', 'ツイートが更新されました');
 }
 
     

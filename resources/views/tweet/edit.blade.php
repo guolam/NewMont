@@ -12,12 +12,20 @@
             <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200  ">
                     @include('common.errors')
-                    <form class="mb-6"  action="{{ route('tweet.update', ['tweet' => $tweet->id]) }}" method="POST">
+                    <form class="mb-6" action="{{ route('tweet.update', ['tweet' => $tweet->id]) }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
+                        
+                        <div class="flex flex-col mb-4 mt-4">
+                            <x-input-label for="date" :value="__('山旅の日')" />
+                            <input id="date" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="date" name="date"
+                                value="{{ $tweet->date }}" required autofocus />
+                            <x-input-error :messages="$errors->get('date')" class="mt-2" />
+                        </div>
+
                         <div class="flex flex-col mb-4">
                             <x-input-label for="tweet" :value="__('山（必須）')" />
-                            <x-text-input id="tweet" class="block mt-1 w-full" type="text" name="tweet"
+                            <input id="tweet" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="tweet"
                                 value="{{$tweet->tweet}}" required autofocus />
                             <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
                         </div>
@@ -34,18 +42,12 @@
                         </div>
                         <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
 
-                        <div class="flex flex-col mb-4">
-                            <x-input-label for="date" :value="__('日付')" />
-                            <x-text-input id="date" class="block mt-1 w-full" type="date" name="date"
-                                value="{{ $tweet->date }}" required autofocus />
-                            <x-input-error :messages="$errors->get('date')" class="mt-2" />
-                        </div>
-
+                        
                         <div class="flex flex-col mb-4">
                             <x-input-label for="perfecture" :value="__('道都府県（必須）')" />
                             <div class="relative">
                                 <select id="perfecture" name="perfecture" type="text" value="{{ $tweet->perfecture }}"
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                   class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
                                     required autofocus>
                                     <option></option>
                                     <option value="北海道" {{ $tweet->perfecture == '北海道' ? 'selected' : '' }}>北海道</option>
@@ -106,7 +108,7 @@
                             <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
                             <div class="relative">
                                 <select id="mont" type="text" name="mont" :value="old('mont')"
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                    class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2">
                                     <option value="なし" {{ $tweet->mont == 'なし' ? 'selected' : '' }}></option>
                                     <option value="百名山" {{ $tweet->mont == '百名山' ? 'selected' : '' }}>百名山</option>
                                     <option value="二百名山" {{ $tweet->mont == '二百名山' ? 'selected' : '' }}>二百名山</option>
@@ -120,7 +122,7 @@
                             <p class="title"> </p>
                             <label class="full-field">
                                 <x-input-label for="parking" :value="__('駐車場(必須・場所を入力すると、住所が表示されます)')" />
-                                <x-text-input id="parking" class="block mt-1 w-full" type="text" name="parking"
+                                <input id="parking" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="parking"
                                     value="{{ $tweet->parking }}" required autocomplete="on" />
                                 <x-input-error :messages="$errors->get('parking')" class="mt-2" />
                             </label>
@@ -128,11 +130,11 @@
 
                         <div id="map" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-4">
                             <p class="title"> </p>
                             <label class="full-field">
                                 <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
-                                <x-text-input id="spring" class="block mt-1 w-full" type="text" name="spring"
+                                <input id="spring" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="spring"
                                     value="{{ $tweet->spring }}" autocomplete="on" />
                                 <x-input-error :messages="$errors->get('spring')" class="mt-2" />
                             </label>
@@ -140,25 +142,34 @@
 
                         <div id="mapSpring" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-4">
                             <p class="title"> </p>
                             <label class="full-field">
                                 <x-input-label for="food" :value="__('飲食店 (場所を入力すると、住所が表示されます)')" />
-                                <x-text-input id="food" class="block mt-1 w-full" type="text" name="food"
+                                <input id="food" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="food"
                                     value="{{ $tweet->food }}" autocomplete="on" />
                                 <x-input-error :messages="$errors->get('food')" class="mt-2" />
                             </label>
                         </div>
                         <div id="mapFood" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-4">
                             <x-input-label for="description" :value="__('旅の感想')" />
-                            <x-text-input id="description" class="block mt-1 w-full" type="text" name="description"
+                            <input id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description"
                                 value="{{ $tweet->description }}" required autofocus />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        </div>   
+                        
+                        <div class="flex flex-col mb-4 mt-4">
+                            <x-input-label for="image" :value="__('画像')" />
+                            @if($currentImage)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/image/' . $tweet->image) }}" style="max-width: 200px; max-height: 200px">
+                                </div>
+                            @endif
+                            <input id="image" class="block mt-1 w-full" type="file" name="image"  required autofocus />
+                            <x-input-error :messages="$errors->get('image')" class="mt-2" />
                         </div>
-
-                 
 
                         <div class="flex items-center justify-end mt-4">
                             <a href="{{ url()->previous() }}">

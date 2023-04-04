@@ -17,7 +17,7 @@
                         <div class="flex flex-col mb-4">
                             <x-input-label for="keyword" :value="__('キーワード')" />
                             <input id="keyword"
-                                class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                                class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
                                 type="text" name="keyword" placeholder="例、くじゅう連山" autofocus>
                             <div class="flex flex-col mb-4">
                                 <x-input-label for="prefecture" :value="__('都道府県')" />
