@@ -39,6 +39,9 @@
                                             <p class="text-left text-gray-800">{{$tweet->user->name}}</p>
                                         </div>
                                         <h3 class="mt-2 text-left font-bold text-lg text-gray-800">{{$tweet->tweet}}</h3>
+                                        <img src="{{ asset('storage/image/'.$tweet->image)}}" 
+        class="mt-8 mb-8 mx-auto" style="height:300px; object-fit: cover; display:block" />
+        </a>
                                     </a>
                                     <div class="flex">
                                         <!-- 条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->

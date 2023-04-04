@@ -53,7 +53,7 @@
 
                                 <!-- 削除ボタン -->
 
-                                <form action="{{ route('groupcontent.destroy',$group_content->id) }}" method="POST" class="text-left onsubmit="return confirm('削除しますか？'); id="deleteForm">
+                                <form action="{{ route('tweet.destroy',$tweet->id) }}" method="POST" class="text-left onsubmit="return confirm('削除しますか？'); id="deleteForm">
                                     @method('delete')
                                     @csrf
 
