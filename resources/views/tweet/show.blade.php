@@ -119,7 +119,6 @@
                                             <p class="py-2 px-3 text-gray-800" id="parking">
                                                 {{$tweet->parking}}
                                             </p>
-
                                             <!--ここに入れたい、駐車場の地図-->
                                         </div>
                                         <div id="map" style="height:500px" class="w-960"> </div>
@@ -132,7 +131,6 @@
                                                 @else
                                             <p>なし</p>
                                             @endif
-
                                             </p>
                                         </div>
                                         @if($tweet->spring)

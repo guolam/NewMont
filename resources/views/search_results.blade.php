@@ -1,3 +1,4 @@
+<!--show search.result.detail'-->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -43,7 +44,7 @@
                 </h1>
                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
                      <a href="{{ route('register') }}" class="text-sm text-gray-700  underline">会員登録はこちら</a>
-                    </button>
+                </button>
                 
             </div>
         </div>

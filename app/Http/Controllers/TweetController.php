@@ -24,8 +24,9 @@ class TweetController extends Controller
         //
         $tweets = Tweet::getAllOrderByUpdated_at();
         return response()->view('dashboard',compact('tweets'));
-       
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -150,6 +151,22 @@ public function show($id)
         abort(404);
     }
 }
+        
+        // tweetをperfecture検索から表示させる
+    //  if ($tweet->is_public) {
+    //         $tweet = Tweet::where('is_public', true)
+    //         ->where('prefecture', $prefecture)
+    //         ->get();
+    //     return view('tweet.show', compact('tweet'));
+    //     }else {
+    //         abort(404);
+    //     }
+
+        
+    
+    
+
+
    
    
     

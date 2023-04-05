@@ -70,8 +70,11 @@ Route::middleware('auth')->group(function () {
 });
 
 //ログインしなくても見られる
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+//地名から検索
+Route::get('/search/{perfecture}', [SearchController::class, 'search'])->name('search');
+
 Route::get('/search/result/{id}', [SearchController::class, 'show'])->name('search.result.detail');
+
 Route::get('/groupcontent/showdetail/{id}', [GroupContentController::class, 'showdetail'])->name('groupcontent.showdetail');
 Route::get('/tweetshow/{id}', [TweetController::class, 'show'])->name('tweet.showopen');
 

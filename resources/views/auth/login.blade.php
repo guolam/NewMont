@@ -8,7 +8,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('メールアドレス')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <input id="email" class="rounded-md block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -16,7 +16,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('パスワード')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <input id="password" class="rounded-md block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
@@ -45,7 +45,7 @@
         </div>
     </form>
     <div class="text-center">
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded mt-4">
+        <button type="submit" class="rounded-md bg-green-500 text-white px-4 py-2 rounded mt-4">
                 <a href="{{ route('register') }}" >
                     <div class="flex">
                     山や旅の思い出を登録されたい方はこちら
