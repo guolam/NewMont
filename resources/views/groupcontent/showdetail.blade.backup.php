@@ -129,7 +129,7 @@
                             </div>
 
                             <!--駐車場の地図-->
-                            <div id="map" style="height:500px" class="w-960"></div>
+                            <!--<div id="map" style="height:500px" class="w-960"></div>-->
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">温泉</p>
@@ -142,10 +142,7 @@
 
                                 </p>
                             </div>
-                            <!--温泉地図-->
-                            @if($group_content->spring)
-                            <div id="mapSpring" style="height:500px" class="w-960"></div>
-                            @endif
+                          
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">ごはん</p>
@@ -156,10 +153,10 @@
                                 <p>なし</p>
                                 @endif
                                 </p>
-                            </div>
-                            @if($group_content->food)
-                            <div id="mapFood" style="height:500px" class="w-960"></div>
-                            @endif
+                            
+                            
+                             @include('map/showYamaMap')
+                            <div id="map"></div>
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">旅の感想</p>

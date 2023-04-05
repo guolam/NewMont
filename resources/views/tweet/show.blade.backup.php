@@ -113,26 +113,20 @@
                                                 {{$tweet->tweet}}
                                             </p>
                                         </div>
-                                         @include('map/showSoloYama')
+                                         @include('map/showSoloYamaMap')
                                          <!--駐車場の地図-->
                                         <div id="map" style="height:500px" class="w-960"></div>
-                                        <div class="flex flex-col mt-4 mb-4">
-                                            <div class="flex">
-                                            <img src="{{ asset('image/parkingmark.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
-                                            </div>
+                                        <div class="flex flex-col mb-4">
+                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800">駐車場</p>
                                             <p class="py-2 px-3 text-gray-800" id="parking">
                                                 {{$tweet->parking}}
                                             </p>
                                             <!--ここに入れたい、駐車場の地図-->
                                         </div>
-                                        <!--<div id="map" style="height:500px" class="w-960"> </div>-->
+                                        <div id="map" style="height:500px" class="w-960"> </div>
 
-                                        <div class="flex flex-col mt-4 mb-4">
-                                            <div class="flex">
-                                            <img src="{{ asset('image/springicon.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
-                                            </div>
+                                        <div class="flex flex-col mb-4">
+                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800">温泉</p>
                                             <p class="py-2 px-3 text-gray-800" id="spring">
                                                 @if($tweet->spring)
                                                 {{$tweet->spring}}
@@ -141,13 +135,12 @@
                                             @endif
                                             </p>
                                         </div>
-                                       
+                                        @if($tweet->spring)
+                                        <div id="mapSpring" style="height:500px" class="w-960"> </div>
+                                        @endif
 
-                                        <div class="flex flex-col mt-4 mb-4">
-                                            <div class="flex">
-                                            <img src="{{ asset('image/ricemark.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　ごはん</p>
-                                            </div>
+                                        <div class="flex flex-col mb-4">
+                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800">ごはん</p>
                                             <p class="py-2 px-3 text-gray-800" id="food">
                                                 @if($tweet->food)
                                                 {{$tweet->food}}
@@ -156,7 +149,9 @@
                                             @endif
                                             </p>
                                         </div>
-                                        
+                                        @if($tweet->food)
+                                        <div id="mapFood" style="height:500px" class="w-960"> </div>
+                                        @endif
 
                                         <div class="flex flex-col mb-4">
                                             <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">

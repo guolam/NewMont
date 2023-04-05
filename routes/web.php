@@ -49,9 +49,15 @@ Route::middleware('auth')->group(function () {
     // グループ内のコンテンツ
     // Route::resource('/groupcontent/', GroupContentController::class);
     Route::get('/groupcontent/', [GroupContentController::class, 'index'])->name('groupcontent.index');
-    Route::get('/groupcontent/{id}/edit', [GroupContentController::class, 'edit'])->name('groupcontent.edit');
-    Route::put('/groupcontent/update/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
-    Route::delete('/groupcontent/delete/{group_id}', [GroupContentController::class, 'update'])->name('groupcontent.destroy');
+    //編集画面
+    // Route::get('/groupcontent/edit/{id}', [GroupContentController::class, 'edit'])->name('groupcontent.edit');
+    Route::get('/groupcontent/{group_id}/edit/{id}', [GroupContentController::class, 'edit'])->name('groupcontent.edit');
+    //更新処理
+    // Route::put('/groupcontent/update/{id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
+    Route::put('/groupcontent/update/{id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
+    
+    // Route::put('/groupcontent/update/{id}', [GroupContentController::class, 'update'])->name('groupcontent.update');
+    Route::delete('/groupcontent/delete/{id}', [GroupContentController::class, 'destroy'])->name('groupcontent.destroy');
     // Route::get('/groupcontent/show/{group_id}', [GroupContentController::class, 'show'])->name('groupcontent.show');
    
     

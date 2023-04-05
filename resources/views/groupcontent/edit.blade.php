@@ -13,12 +13,16 @@
                 <div class="p-6 bg-white border-b border-gray-200  ">
                     @include('common.errors')
                     <form class="mb-6"
-                        action="{{ route('groupcontent.update', ['group_id' => $group_content->group_id]) }}"
-                        method="POST">
+                        action="{{ route('groupcontent.update', ['id' => $group_content->id, 'group_id' => $group_content->group_id]) }}"
+                         
+                        method="POST" 
+                        enctype="multipart/form-data">
 
                         @method('put')
                         @csrf
-                        
+                        <input type="hidden" name="id" value="{{ $group_content->id }}">
+                        <input type="hidden" name="group_id" value="{{ $group_content->group_id }}">
+                        <input type="hidden" name="user?id" value="{{ $group_content->user_id }}">
                         <div class="flex flex-col mb-4">
                             <x-input-label for="date" :value="__('山旅の日')" />
                             <input id="date" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="date" name="date"
@@ -194,6 +198,7 @@
                             <p class="title"> </p>
                             <label class="full-field">
                                 <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
+                                <img src="{{ asset('image/parkingmark.png') }}">
                                 <input id="spring" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="spring"
                                     value="{{ $group_content->spring }}" autocomplete="on" />
                                 <x-input-error :messages="$errors->get('spring')" class="mt-2" />
@@ -215,22 +220,12 @@
 
                         <div class="flex flex-col mb-4">
                             <x-input-label for="description" :value="__('旅の感想')" />
-                            <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >
-                                {{ $group_content->description }}</textarea>
+                            <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >{{ $group_content->description }}</textarea>
                             
                             
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                        </div>
-                        
-                        <div class="flex flex-col mb-4 mt-4">
-                            <x-input-label for="image" :value="__('画像')" />
-                            @if($currentImage)
-                                <div class="mb-2">
-                                    <img src="{{ asset('storage/image/' . $group_content->image) }}" style="max-width: 200px; max-height: 200px">
-                                </div>
-                            @endif
-                            <input id="image" class="block mt-1 w-full" type="file" name="image"  required autofocus />
-                            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                       
+
+                            
                         </div>
 
 
@@ -251,6 +246,19 @@
                     <script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&callback=initMap&region=JP&language=ja&libraries=places&v=weekly"
                         defer></script>
+                    <script>
+                        function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            document.getElementById('image-preview').src = e.target.result;
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+                    </script>
                 </div>
             </div>
         </div>

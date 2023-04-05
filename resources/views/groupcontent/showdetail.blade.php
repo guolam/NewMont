@@ -17,8 +17,12 @@
                              @if (Auth::check() && ($group_content->user_id === Auth::user()->id))
                             <!-- 更新ボタン -->
                             <div class="flex justify-end">
-                                <form action="{{ route('groupcontent.edit',$group_content->id) }}" method="GET"
+                                <form action="{{ route('groupcontent.edit',['id' => $group_content->id, 'group_id' => $group_content->group_id, 'user_id' => $group_content->user_id]) }}" method="GET"
+                                
                                     class="text-left">
+                                    <input type="hidden" name="id" value="{{ $group_content->id }}">
+                                    <input type="hidden" name="group_id" value="{{ $group_content->group_id }}">
+                                    <input type="hidden" name="user_id" value="{{ $group_content->user_id }}">
                                     @csrf
                                     <button type="submit"
                                         class="flex bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
@@ -120,19 +124,25 @@
                                     {{$group_content->tweet}}
                                 </p>
                             </div>
-                            @include('map/contentYama')
-                            <div class="flex flex-col mb-4">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">駐車場</p>
+                            @include('map/showGroupYama')
+                             <!--駐車場の地図-->
+                            <div id="map" style="height:500px" class="w-960"></div>
+                             <div class="flex flex-col mt-4 mb-4">
+                                <div class="flex">
+                                <img src="{{ asset('image/parkingmark.png') }}" style="width: 30px; height: 30px;">
+                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
+                                </div>
                                 <p class="py-2 px-3 text-gray-800 " id="parking">
                                     {{$group_content->parking}}
                                 </p>
                             </div>
 
-                            <!--駐車場の地図-->
-                            <div id="map" style="height:500px" class="w-960"></div>
 
-                            <div class="flex flex-col mb-4">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">温泉</p>
+                             <div class="flex flex-col mt-4 mb-4">
+                                 <div class="flex">
+                                <img src="{{ asset('image/springicon.png') }}" style="width: 30px; height: 30px;">
+                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
+                                </div>
                                 <p class="py-2 px-3 text-gray-800 " id="spring">
                                     @if($group_content->spring)
                                     {{$group_content->spring}}
@@ -142,13 +152,13 @@
 
                                 </p>
                             </div>
-                            <!--温泉地図-->
-                            @if($group_content->spring)
-                            <div id="mapSpring" style="height:500px" class="w-960"></div>
-                            @endif
-
-                            <div class="flex flex-col mb-4">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">ごはん</p>
+                
+                         
+                            <div class="flex flex-col mt-4 mb-4">
+                                <div class="flex">
+                                <img src="{{ asset('image/ricemark.png') }}" style="width: 30px; height: 30px;">
+                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　ごはん</p>
+                                </div>
                                 <p class="py-2 px-3 text-gray-800 " id="food">
                                     @if($group_content->food)
                                     {{$group_content->food}}
@@ -157,9 +167,7 @@
                                 @endif
                                 </p>
                             </div>
-                            @if($group_content->food)
-                            <div id="mapFood" style="height:500px" class="w-960"></div>
-                            @endif
+                            
 
                             <div class="flex flex-col mb-4">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">旅の感想</p>

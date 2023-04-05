@@ -33,7 +33,6 @@ class GroupContentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($group_id)
-    
     {
         //
         $group = Group::findOrFail($group_id);
@@ -114,22 +113,15 @@ class GroupContentController extends Controller
 
     // 一番下のリダイレクトを以下のように修正してください。
     return redirect()->route('group.show', ['group' => $group_content->group_id]);
-     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 }
 
 // コンテンツのタイトルと内容を表示する画面
-public function show($group_id)
-{
-    $group_contents = GroupContent::where('group_id', $group_id)->get();
-    return view('groupcontent.show', compact('group_contents'));
-    
-}
+    public function show($group_id)
+    {
+        $group_contents = GroupContent::where('group_id', $group_id)->get();
+        return view('groupcontent.show', compact('group_contents'));
+        
+    }
 
 // コンテンツの詳細を出す画面
 
@@ -153,21 +145,12 @@ public function showdetail($id)
     }
 
 
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($group_id, $id)
     {
-      $item = GroupContent::findOrFail($id);
-      $group_content = GroupContent::find($id);
-      $currentImage = url('storage/image/' . $group_content->image);
-      return response()->view('groupcontent.edit', compact('group_content', 'currentImage'));
+       $group_content = GroupContent::where('group_id', $group_id)
+                                      ->where('id', $id)
+                                      ->firstOrFail();
+       return response()->view('groupcontent.edit', compact('group_content'));
     }
 
 
@@ -180,59 +163,99 @@ public function showdetail($id)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-      // バリデーション
-      $validator = Validator::make($request->all(), [
-      'tweet' => 'required | max:255',
-      'perfecture' => 'required',
-      'description' => 'required',
-      'parking' => 'required',
-      'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
-      
-        // バリデーション:エラー
-        if ($validator->fails()) {
-            return redirect()
-                ->route('tweet.edit', $id)
-                ->withInput()
-                ->withErrors($validator);
-        }
+    // public function update(Request $request, $id)
+        // {
+        // Check if the content group was found
+        
+         // group_contentモデルインスタンスの取得
+        // $group_content = GroupContent::find($id);
         
         
+
+        // dd($request);
+        // // バリデーション
+        // $validator = Validator::make($request->all(), [
+        //     'tweet' => 'required | max:255',
+        //     'perfecture' => 'required',
+        //     'description' => 'required',
+        //     'parking' => 'required',
+        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
       
-      // content_groupモデルインスタンスの取得
-      $content_group = ContentGroup::find($id);
-      
-      
+        // // バリデーション:エラー
+        // if ($validator->fails()) {
+        //     return redirect()
+        //         ->route('groupcontent.edit', $id)
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
+ 
       // 画像がアップロードされている場合
-      if ($request->hasFile('image')) {
-          // 古い画像ファイルを削除
-          if ($content_group->image) {
-              Storage::disk('public')->delete('image/' . $content_group->image);
-          }
+    //   if ($request->hasFile('image')) {
+    //       // 古い画像ファイルを削除
+    //       if ($content_group->image) {
+    //           Storage::disk('public')->delete('image/' . $content_group->image);
+    //       }
       
           // 新しい画像ファイルを保存
-          $imageName = time() . '.' . $request->image->extension();
-          $request->image->storeAs('image', $imageName, 'public');
+    //       $imageName = time() . '.' . $request->image->extension();
+    //       $request->image->storeAs('image', $imageName, 'public');
           
-          // データベースの画像フィールドを更新
-          $content_group->image = $imageName;
-      }
+    //       // データベースの画像フィールドを更新
+    //       $group_content->image = $imageName;
       
-      // バリデーションが成功したデータを更新
-      $content_group->tweet = $request->tweet;
-      $content_group->perfecture = $request->perfecture;
-      $content_group->description = $request->description;
-      $content_group->parking = $request->parking;
-      $content_group->save();
+    //   // バリデーションが成功したデータを更新
+    //   $group_content->tweet = $request->tweet;
+    //   $group_content->perfecture = $request->perfecture;
+    //   $group_content->description = $request->description;
+    //   $group_content->parking = $request->parking;
+    //   $group_content->save();
+     
+    //   //データ更新処理
       
-      //データ更新処理
-      $result = Tweet::find($id)->update($request->all());
-      return redirect()->route('group.show',['group' => $request->group_id]);
+    //   return redirect()->route('groupcontent.show', ['group_id' => $group_content->group_id]);
 
-    }
+    // }
 
+
+        public function update(Request $request, $id, $group_id)
+        {
+                                      
+       // idとgroup_idを使って、更新するレコードを取得する
+       
+       
+        $group_content = GroupContent::where('id', $id)
+                                      ->where('group_id', $group_id)
+                                      ->firstOrFail();
+    
+        // $requestオブジェクトから、更新する値を取得する
+        $tweet = $request->input('tweet');
+        $user_id = $request->input('user_id');
+    
+        // レコードを更新する
+        $group_content->tweet = $tweet;
+        $group_content->user_id = $user_id;
+        $group_content->save();
+        
+        // バリデーション
+        // $validator = Validator::make($request->all(), [
+        //     'tweet' => 'required | max:255',
+        //     'perfecture' => 'required',
+        //     'description' => 'required',
+        //     'parking' => 'required',
+        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+      
+        // // バリデーション:エラー
+        // if ($validator->fails()) {
+        //     return redirect()
+        //         ->route('groupcontent.edit', $id)
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
+           // 更新後の画面にリダイレクトする
+            return redirect()->route('groupcontent.show', ['id' => $group_content->id, 'group_id' => $group_content->group_id]);
+}
 
     /**
      * Remove the specified resource from storage.
