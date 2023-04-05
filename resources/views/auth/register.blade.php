@@ -5,14 +5,14 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('お名前')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <input id="name" class="rounded-md block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('メールアドレス')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <input id="email" class="rounded-md block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -20,7 +20,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('パスワード')"/>
 
-            <x-text-input id="password" class="block mt-1 w-full placeholder-gray-400"
+            <input id="password" class="rounded-md block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="new-password"
@@ -33,7 +33,7 @@
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('パスワード確認')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+            <input id="password_confirmation" class="rounded-md block mt-1 w-full"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
