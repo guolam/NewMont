@@ -215,8 +215,10 @@
 
                         <div class="flex flex-col mb-4">
                             <x-input-label for="description" :value="__('旅の感想')" />
-                            <input id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description"
-                                value="{{ $group_content->description }}" required autofocus />
+                            <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >
+                                {{ $group_content->description }}</textarea>
+                            
+                            
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
                         
