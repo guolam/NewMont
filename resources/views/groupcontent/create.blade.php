@@ -19,7 +19,7 @@
           <div class="flex flex-col mb-4">
             <x-input-label :value="__('公開設定')" />
             <div class="flex items-center mt-2">
-              <input id="public" type="radio" name="is_public" value="1" class="form-radio h-5 w-5 text-blue-600" {{ old('is_public') === '1' ? 'checked' : '' }}>
+              <input id="public" type="radio" name="is_public" value="1" class="form-radio h-5 w-5 text-blue-600" checked {{ old('is_public') === '1' ? 'checked' : '' }}>
               <label for="public" class="ml-2">{{ __('公開') }}</label>
             </div>
             <div class="flex items-center mt-2">
@@ -32,14 +32,14 @@
           <input type="hidden" name="group_id" value="{{ $group->id}}">
           <div class="flex flex-col mb-4">
               <x-input-label for="date" :value="__('日付')" />
-              <x-text-input id="date" class="block mt-1 w-full" type="date" name="date" :value="old('date')" required autofocus />
+              <input id="date" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="date" name="date" :value="old('date')" required autofocus />
               <x-input-error :messages="$errors->get('date')" class="mt-2" />
             </div>
           
           <div class="flex flex-col mb-4">
           <x-input-label for="perfecture" :value="__('道都府県（必須）')" />
           <div class="relative">
-          <select id="perfecture" name="perfecture" type="text" :value="old('perfecture')" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  required autofocus>
+          <select id="perfecture" name="perfecture" type="text" :value="old('perfecture')" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" required autofocus>
             <option></option>
             <option value="北海道">北海道</option>
             <option value="青森県">青森県</option>
@@ -96,7 +96,7 @@
           <div class="flex flex-col mb-4">
           <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
           <div class="relative">
-          <select id="mont" type="text" name="mont" :value="old('mont')" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+          <select id="mont" type="text" name="mont" :value="old('mont')" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2">
             <option value="なし" id="mont" name="mont"></option>
             <option value="百名山" id="mont" name="mont">百名山</option>
             <option value="二百名山" id="mont" name="mont">二百名山</option>
@@ -105,7 +105,7 @@
             
             <div class="flex flex-col mb-4">
               <x-input-label for="tweet" :value="__('山（必須）')" />
-              <x-text-input id="tweet" class="block mt-1 w-full" type="text" name="tweet" :value="old('tweet')" required autofocus />
+              <input id="tweet" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="tweet" :value="old('tweet')" required autofocus />
               <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
             </div>
             
@@ -114,9 +114,9 @@
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="parking" :value="__('駐車場(必須・場所を入力すると、住所が表示されます)')" />
-              <x-text-input 
+              <input 
               id="parking" 
-              class="block mt-1 w-full" 
+              class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
               type="text" 
               name="parking" 
               :value="old('parking')" 
@@ -131,9 +131,9 @@
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
-              <x-text-input 
+              <input 
               id="spring" 
-              class="block mt-1 w-full" 
+              class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
               type="text" 
               name="spring" 
               :value="old('spring')" 
@@ -148,9 +148,9 @@
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="food" :value="__('飲食店 (場所を入力すると、住所が表示されます)')" />
-              <x-text-input 
+              <input 
               id="food" 
-              class="block mt-1 w-full" 
+              class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
               type="text" 
               name="food" 
               :value="old('food')" 
@@ -161,14 +161,16 @@
             <div id="mapFood" style="height:500px" class="w-960"> </div>
             
             <div class="flex flex-col mb-4">
-              <x-input-label for="description" :value="__('旅の感想')" />
-              <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus />
+              <x-input-label for="description" :value="__('旅の感想（必須）')" />
+              <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >{{ old('description') }}</textarea>
               <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
             
+            
+            
            <div class="flex flex-col mb-4">
-              <x-input-label for="image" :value="__('画像')" />
-              <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus />
+              <x-input-label for="image" :value="__('画像 (必須)')" />
+              <input id="image" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="file" name="image" :value="old('image')" required autofocus />
               <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>
            

@@ -62,8 +62,10 @@
                 </button>
             </div>
         </div>
-        <p>道都府県から山旅を探す</p>
-        <div class="mt-12">
+        <div class="mt-20">
+        <p class="text-2xl">道都府県から山旅を探す</p>
+        </div>
+        <div class="mt-6">
              <div class="mt-8">
             <div class="flex">
                 <h2 class="mr-4">

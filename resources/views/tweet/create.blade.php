@@ -159,13 +159,13 @@
             <div id="mapFood" style="height:500px" class="w-960"> </div>
             
             <div class="flex flex-col mb-4 mt-4">
-              <x-input-label for="description" :value="__('旅の感想')" />
-              <input id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" :value="old('description')" required autofocus />
+              <x-input-label for="description" :value="__('旅の感想（必須）')" />
+              <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >{{ old('description') }}</textarea>
               <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
             
            <div class="flex flex-col mb-4 mt-4">
-              <x-input-label for="image" :value="__('画像')" />
+              <x-input-label for="image" :value="__('画像（必須）')" />
               <input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus />
               <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>

@@ -20,14 +20,14 @@
 
     <div class="flex flex-col mb-4">
             <x-input-label for="group_name" :value="__('グループ名')" />
-            <x-text-input id="group_name" class="block mt-1 w-full" type="text" name="group_name" :value="old('group_name')" required autofocus />
+            <input id="group_name" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="group_name" :value="old('group_name')" required autofocus />
             <x-input-error :messages="$errors->get('group_name')" class="mt-2" />
     </div>
     
     <div class="flex flex-col mb-4">
             <x-input-label for="description" :value="__('グループ説明')" />
             <!--textareaにしたい-->
-            <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" />
+           <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" name="description" rows="4">{{ old('description') }}</textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
     </div>
             @csrf
