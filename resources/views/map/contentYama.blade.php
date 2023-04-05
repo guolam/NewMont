@@ -6,9 +6,9 @@ function initMap() {
   var targetFood = document.getElementById('mapFood'); 
   var targetSpring = document.getElementById('mapSpring'); 
   
-  var address = '{{$tweet->parking}}'; //input//住所を指定
-  var addressFood = '{{$tweet->food}}';
-  var addressSpring = '{{$tweet->spring}}';
+  var address = '{{$group_content->parking}}'; //input//住所を指定
+  var addressFood = '{{$group_content->food}}';
+  var addressSpring = '{{$group_content->spring}}';
   
   var geocoder = new google.maps.Geocoder();  
   var geocoderFood = new google.maps.Geocoder();  
