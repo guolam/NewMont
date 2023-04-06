@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('select', [TweetController::class, 'select'])->name('tweet.select');
     });
 
-    Route::resource('tweet', TweetController::class)->except(['create', 'edit']);
+    Route::resource('tweet', TweetController::class);
 
     Route::prefix('user/{user}')->group(function () {
         Route::get('/', [FollowController::class, 'show'])->name('follow.show');
