@@ -58,7 +58,7 @@
                                    
                                 </div>
                                 <div class="flex">
-                                <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
+                                <p class="text-left text-lg text-gray-800 ">グループ詳細：　</p>
                                 <p class="text-left text-lg text-gray-800 ">
                                     {{$group->description}}</p>
                                 </div>
@@ -72,7 +72,7 @@
 
                                 </div>
                                 <div class="flex">
-                                <p class="text-left text-lg text-gray-800 ">グループ詳細</p>
+                                <p class="text-left text-lg text-gray-800 ">グループ詳細：　</p>
                                 <p class="text-left text-lg text-gray-800 ">
                                     {{$group->description}}</p>
                                 </div>

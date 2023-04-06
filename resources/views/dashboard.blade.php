@@ -18,6 +18,8 @@
                     </div>
                    
                     <!--セレクトタグで道都府県を自動検索-->
+                    <div class="flex">
+                    <p class="hidden sm:flex sm:items-center sm:ml-6">道都府県から検索:</p>
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <form method="GET" action="{{ route('tweet.select') }}">
                             <select name="perfecture" onchange="selectPerfecture(this.value)"
@@ -30,8 +32,8 @@
                             </select>
                         </form>
                     </div>
+                    </div>
 
-           
                     <table class="text-center w-full border-collapse">
                         <thead>
                             <tr>

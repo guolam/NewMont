@@ -25,9 +25,6 @@
         </a>
     @endforeach
 
-    <a href="{{ url()->previous() }}">
-        <x-secondary-button class="ml-3 mt-4">
-            {{ __('戻る') }}
-            </x-primary-button>
+    
     </a>
 </div>

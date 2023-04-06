@@ -22,13 +22,13 @@
         @endforeach
     </ul>
 </div>
-<div class="flex items-center justify-end mt-4">
-            <a href="{{ url()->previous() }}">
-              <x-secondary-button class="ml-3">
+    <div class="flex items-center justify-end mt-4">
+        <a href="{{ url()->previous() }}">
+            <x-secondary-button class="ml-3">
                 {{ __('戻る') }}
-              </x-primary-button>
-            </a>
-            </div>
+            </x-primary-button>
+        </a>
+    </div>
 
  
 </x-app-layout>

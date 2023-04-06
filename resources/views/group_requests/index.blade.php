@@ -15,9 +15,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                        <div class="flex items-center justify-end mt-4">
+                            <a href="{{ url()->previous() }}">
+                                <x-secondary-button class="ml-3">
+                                     {{ __('戻る') }}
+                                </x-primary-button>
+                         </div>
                     @foreach($groups as $group)
                         @if(Auth::user()->id === $group->user_id)
+                        
                             <h2>リクエスト中</h2>
                             <table class="table w-full">
                                 <thead>
