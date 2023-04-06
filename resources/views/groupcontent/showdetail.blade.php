@@ -137,9 +137,8 @@
                                 </p>
                             </div>
 
-
-                             <div class="flex flex-col mt-4 mb-4">
-                                 <div class="flex">
+                            <div class="flex flex-col mt-4 mb-4">
+                                <div class="flex">
                                 <img src="{{ asset('image/springicon.png') }}" style="width: 30px; height: 30px;">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
                                 </div>

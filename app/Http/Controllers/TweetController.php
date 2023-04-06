@@ -8,7 +8,7 @@ use Validator;
 use App\Models\Tweet;
 use App\Models\User;
 use Auth;
-use Symfony\Componet\HttpKernel\Exception\AccessDeniedHttpException;
+use ymfony\Component\HttpKernel\Exception\AccessDeniedHttpException; 
 use Illuminate\Support\Facades\Storage;
 
 
@@ -23,7 +23,11 @@ class TweetController extends Controller
     {
         //
         $tweets = Tweet::getAllOrderByUpdated_at();
-        return response()->view('dashboard',compact('tweets'));
+        $perfectures = Tweet::select('perfecture')->distinct()->get();
+        $selectedPerfecture = '';
+        
+        return response()->view('dashboard', ['tweets' => $tweets, 'perfectures' => $perfectures, 'selectedPerfecture' => $selectedPerfecture]);
+       
     }
 
 
@@ -152,23 +156,32 @@ public function show($id)
     }
 }
         
-        // tweetをperfecture検索から表示させる
-    //  if ($tweet->is_public) {
-    //         $tweet = Tweet::where('is_public', true)
-    //         ->where('prefecture', $prefecture)
-    //         ->get();
-    //     return view('tweet.show', compact('tweet'));
-    //     }else {
-    //         abort(404);
+    // public function select(Request $request)
+    // {
+    //     $tweets = Mastertest::select('series_name')->distinct()->get();
+    //     $selected_series_name = $request->input('perfecture');
+    //     $mastertests = Mastertest::getAllOrderByPrice();
+    //     if (!empty($selected_series_name)) {
+    //         $mastertests = $mastertests->where('series_name', $selected_series_name);
     //     }
-
-        
+    //     else{
+    //         $selected_series_name = Mastertest::getLatestSeriesnameById();
+    //         $mastertests = $mastertests->where('series_name', $selected_series_name);
+    //     }
+    //     return response()->view('dashboard', compact('perfecuture', '', 'selected_series_name'));
+    // }
     
-    
 
 
-   
-   
+  public function select(Request $request)
+{
+ 
+    $selectedPerfecture = $request->input('perfecture', '');
+    $tweets = $selectedPerfecture ? Tweet::where('perfecture', $selectedPerfecture)->get() : Tweet::all();
+    $perfecture = Tweet::select('perfecture')->distinct()->get();
+
+    return view('dashboard', ['tweets' => $tweets, 'perfectures' => $perfecture, 'selectedPerfecture' => $selectedPerfecture]);
+}
     
     public function __construct()
     {

@@ -16,6 +16,22 @@
                             </x-href-button>
                         </div>
                     </div>
+                   
+                    <!--セレクトタグで道都府県を自動検索-->
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <form method="GET" action="{{ route('tweet.select') }}">
+                            <select name="perfecture" onchange="selectPerfecture(this.value)"
+                                class="rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                @foreach ($tweets as $tweet)
+                                <option value="{{ $tweet->perfecture }}" @if ($tweet->perfecture == $selectedPerfecture) selected @endif>
+                                    {{ $tweet->perfecture }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </form>
+                    </div>
+
+           
                     <table class="text-center w-full border-collapse">
                         <thead>
                             <tr>
@@ -56,4 +72,15 @@
             </div>
         </div>
     </div>
+    
+    <script>
+function selectPerfecture(value) {
+    if (value) {
+        const url = new URL('{{ route("tweet.select") }}');
+        url.searchParams.append('perfecture', value);
+        window.location.href = url;
+    }
+}
+</script>
+
 </x-app-layout>

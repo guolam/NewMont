@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
     Route::resource('tweet', TweetController::class);
     
+    //ソロ用の選択タグ
+    
+    Route::get('/select', [TweetController::class, 'select'])->name('tweet.select');
+    
     // 所属グループ
     Route::get('/mygroup', [UserController::class, 'show'])->name('users.show');
     
