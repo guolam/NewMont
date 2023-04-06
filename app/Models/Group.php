@@ -55,4 +55,11 @@ class Group extends Model
 {
     return $this->hasMany(GroupContent::class);
 }
+
+public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
+
 }

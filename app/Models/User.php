@@ -70,7 +70,7 @@ class User extends Authenticatable
 
 //group member
 
-
+// groupとリンク
     public function groups()
     {
         return $this->belongsToMany(Group::class);
@@ -82,8 +82,11 @@ class User extends Authenticatable
         return $this->hasMany(GroupRequest::class);
     }
   
+  //memberであるなら
     public function isMemberOf($group)
     {
         return $this->groups->contains($group);
     }
+
+    
 }

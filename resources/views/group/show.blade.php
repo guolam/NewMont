@@ -25,11 +25,13 @@
                         </a>
                     </div>
                     
+                    @if(Auth::user()->id === $group->user->id)
                        <div class="flex items-center justify-end mt-4">
                         <x-href-button href="{{ route('group.edit', $group->id) }}">
                           {{ __('編集') }}
                         </x-href-button>
                       </div>
+                      @endif
 
                     <div class="flex items-center justify-end mt-4">
                         <x-href-button class="ml-3 " href="{{ route('groupcontent.create',$group->id) }}"
