@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/mygroup', [UserController::class, 'show'])->name('users.show');
     
     // グループ
-    // Route::resource('group', 'App\Http\Controllers\GroupController');
     Route::resource('group', GroupController::class)->only(['index', 'create', 'store']);
+    //編集・更新
     Route::get('/group/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
     Route::put('/group/update/{id}', [GroupController::class, 'update'])->name('group.update');
-    // Route::put('/group/update/{group}', [GroupController::class, 'update'])->name('group.update');
+    //表示
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('group.show');
     
     // グループ内のコンテンツ

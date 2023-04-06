@@ -1,3 +1,22 @@
+@php
+  $prefectures = [
+    '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県', '茨城県', '栃木県', '群馬県',
+    '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県',
+    '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+    '鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県', '福岡県',
+    '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県','海外'
+  ];
+  $orderedPrefectures = [
+   '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県', '茨城県', '栃木県', '群馬県',
+    '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県',
+    '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+    '鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県', '福岡県',
+    '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県','海外'
+    ];
+    $prefectures = array_values(array_intersect($orderedPrefectures, $prefectures));
+@endphp
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,16 +39,16 @@
                     <!--セレクトタグで道都府県を自動検索-->
                     <div class="flex">
                     <p class="hidden sm:flex sm:items-center sm:ml-6">道都府県から検索:</p>
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <div class="hidden sm:flex sm:items-center sm:ml-6 rounded">
                         <form method="GET" action="{{ route('tweet.select') }}">
-                            <select name="perfecture" onchange="selectPerfecture(this.value)"
-                                class="rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                @foreach ($tweets as $tweet)
-                                <option value="{{ $tweet->perfecture }}" @if ($tweet->perfecture == $selectedPerfecture) selected @endif>
-                                    {{ $tweet->perfecture }}
+                            <select name="perfecture" onchange="selectPerfecture(this.value)">
+                              @foreach ($prefectures as $prefecture)
+                                <option value="{{ $prefecture }}" @if ($prefecture == $selectedPerfecture) selected @endif>
+                                    {{ $prefecture }}
                                 </option>
-                                @endforeach
+                              @endforeach
                             </select>
+                       
                         </form>
                     </div>
                     </div>
