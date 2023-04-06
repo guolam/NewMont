@@ -1,5 +1,4 @@
 <!-- resources/views/groupcontent/edit.blade.php -->
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -13,30 +12,18 @@
                 <div class="p-6 bg-white border-b border-gray-200  ">
                     @include('common.errors')
                     <form class="mb-6"
-                        action="{{ route('groupcontent.update', ['id' => $group_content->id, 'group_id' => $group_content->group_id]) }}"
-                         
+                        action="{{ route('groupcontent.update',['id' => $group_content->id, 'group_id' => $group_content->group_id]) }}"
                         method="POST" 
                         enctype="multipart/form-data">
 
-                        @method('put')
+                        
                         @csrf
+                        @method('put')
                         <input type="hidden" name="id" value="{{ $group_content->id }}">
                         <input type="hidden" name="group_id" value="{{ $group_content->group_id }}">
-                        <input type="hidden" name="user?id" value="{{ $group_content->user_id }}">
-                        <div class="flex flex-col mb-4">
-                            <x-input-label for="date" :value="__('山旅の日')" />
-                            <input id="date" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="date" name="date"
-                                value="{{ $group_content->date }}" required autofocus />
-                            <x-input-error :messages="$errors->get('date')" class="mt-2" />
-                        </div>
+                        <input type="hidden" name="user_id" value="{{ $group_content->user_id }}">
                         
-                        <div class="flex flex-col mb-4">
-                            <x-input-label for="tweet" :value="__('山（必須）')" />
-                            <input id="tweet" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="tweet"
-                                value="{{$group_content->tweet}}" required autofocus />
-                            <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
-                        </div>
-
+                        <div class="mb-6">
                         <x-input-label :value="__('公開設定')" />
                         <div class="flex items-center mt-2">
                             <input id="public" type="radio" name=
@@ -45,6 +32,7 @@
                             '' }}>
                             <label for="public" class="ml-2">{{ __('公開') }}</label>
                         </div>
+                        
                         <div class="flex items-center mt-2">
                             <input id="private" type="radio" name="is_public" value="0"
                                 class="form-radio h-5 w-5 text-blue-600" {{ $group_content->is_public == 0 ? 'checked' :
@@ -52,8 +40,15 @@
                             <label for="private" class="ml-2">{{ __('非公開') }}</label>
                         </div>
                         <x-input-error :messages="$errors->get('is_public')" class="mt-2" />
-
+                        </div>
                         
+                        
+                        <div class="flex flex-col mb-4">
+                            <x-input-label for="date" :value="__('山旅の日')" />
+                            <input id="date" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="date" name="date"
+                                value="{{ $group_content->date }}" required autofocus />
+                            <x-input-error :messages="$errors->get('date')" class="mt-2" />
+                        </div>
 
                         <div class="flex flex-col mb-4">
                             <x-input-label for="perfecture" :value="__('道都府県（必須）')" />
@@ -166,7 +161,7 @@
                         </div>
 
                         
-                    <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4">
                         <x-input-label for="mont" :value="__('百・二百名山(任意)')" />
                         <div class="relative">
                             <select id="mont" type="text" name="mont" :value="old('mont')"
@@ -179,12 +174,20 @@
 
                             </select>
                         </div>
-                    </div>
+                        </div>
+                    
+                        <div class="flex flex-col mb-4">
+                            <x-input-label for="tweet" :value="__('山（必須）')" />
+                            <input id="tweet" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="tweet"
+                                value="{{$group_content->tweet}}" required autofocus />
+                            <x-input-error :messages="$errors->get('tweet')" class="mt-2" />
+                        </div>
 
                         @include('map/autocomplete')
                         <div class="flex flex-col mb-4">
                             <p class="title"> </p>
                             <label class="full-field">
+                               
                                 <x-input-label for="parking" :value="__('駐車場(必須・場所を入力すると、住所が表示されます)')" />
                                 <input id="parking" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="parking"
                                     value="{{ $group_content->parking }}" required autocomplete="on" />
@@ -194,11 +197,11 @@
 
                         <div id="map" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-8">
                             <p class="title"> </p>
-                            <label class="full-field">
+                            <label class="full-field  mt-12">
                                 <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
-                                <img src="{{ asset('image/parkingmark.png') }}">
+                                
                                 <input id="spring" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="spring"
                                     value="{{ $group_content->spring }}" autocomplete="on" />
                                 <x-input-error :messages="$errors->get('spring')" class="mt-2" />
@@ -207,7 +210,7 @@
 
                         <div id="mapSpring" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-8">
                             <p class="title"> </p>
                             <label class="full-field">
                                 <x-input-label for="food" :value="__('飲食店 (場所を入力すると、住所が表示されます)')" />
@@ -218,17 +221,10 @@
                         </div>
                         <div id="mapFood" style="height:500px" class="w-960"> </div>
 
-                        <div class="flex flex-col mb-4">
+                        <div class="flex flex-col mb-4 mt-8">
                             <x-input-label for="description" :value="__('旅の感想')" />
                             <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >{{ $group_content->description }}</textarea>
-                            
-                            
-                       
-
-                            
                         </div>
-
-
 
                         <div class="flex items-center justify-end mt-4">
                             <a href="{{ url()->previous() }}">

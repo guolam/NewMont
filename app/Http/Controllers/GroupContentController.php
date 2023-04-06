@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\GroupContent;
 use App\Models\Group;
 use Auth;
-use Symfony\Componet\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class GroupContentController extends Controller
@@ -116,11 +116,20 @@ class GroupContentController extends Controller
 }
 
 // コンテンツのタイトルと内容を表示する画面
-    public function show($group_id)
-    {
-        $group_contents = GroupContent::where('group_id', $group_id)->get();
-        return view('groupcontent.show', compact('group_contents'));
+    // public function show($group_id)
+    // {
+    //     $group_contents = GroupContent::where('group_id', $group_id)->get();
+    //     return view('groupcontent.show', compact('group_contents'));
         
+    // }
+// コンテンツのタイトルと内容を表示する画面
+    public function show($id, $group_id)
+    {
+        $group_content = GroupContent::where('id', $id)
+                                      ->where('group_id', $group_id)
+                                      ->firstOrFail();
+    
+        return view('groupcontent.show', compact('group_content'));
     }
 
 // コンテンツの詳細を出す画面
@@ -218,51 +227,63 @@ public function showdetail($id)
     // }
 
 
-        public function update(Request $request, $id, $group_id)
-        {
-                                      
-       // idとgroup_idを使って、更新するレコードを取得する
-       
-       
+    public function update(Request $request, $group_id, $id)
+    {
+        
+        // Find the record to update using id and group_id
         $group_content = GroupContent::where('id', $id)
                                       ->where('group_id', $group_id)
-                                      ->firstOrFail();
-    
-        // $requestオブジェクトから、更新する値を取得する
-        $tweet = $request->input('tweet');
-        $user_id = $request->input('user_id');
-    
-        // レコードを更新する
-        $group_content->tweet = $tweet;
-        $group_content->user_id = $user_id;
-        $group_content->save();
+                                      ->first(); 
+                                      
+         // バリデーション
+            $validator = Validator::make($request->all(), [
+                'tweet' => 'required | max:255',
+                'perfecture' => 'required',
+                'description' => 'required',
+                'parking' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+          
+            // // バリデーション:エラー
+            if ($validator->fails()) {
+                return redirect()
+                    ->route('groupcontent.edit', $id)
+                    ->withInput()
+                    ->withErrors($validator);
+            }
         
-        // バリデーション
-        // $validator = Validator::make($request->all(), [
-        //     'tweet' => 'required | max:255',
-        //     'perfecture' => 'required',
-        //     'description' => 'required',
-        //     'parking' => 'required',
-        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
-      
-        // // バリデーション:エラー
-        // if ($validator->fails()) {
-        //     return redirect()
-        //         ->route('groupcontent.edit', $id)
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
-           // 更新後の画面にリダイレクトする
-            return redirect()->route('groupcontent.show', ['id' => $group_content->id, 'group_id' => $group_content->group_id]);
-}
+        // Get the updated values from the request object
+        $group_content->date = $request->input('date');
+        $group_content->tweet = $request->input('tweet');
+        $group_content->is_public = $request->input('is_public');
+        $group_content->perfecture = $request->input('perfecture');
+        $group_content->mont = $request->input('mont');
+        $group_content->parking = $request->input('parking');
+        $group_content->spring = $request->input('spring');
+        $group_content->food = $request->input('food');
+        $group_content->description = $request->input('description');
+    
+    $group_content->fill([
+    'date' => $request->input('date'),
+    'tweet' => $request->input('tweet'),
+    'is_public' => $request->input('is_public'),
+    'perfecture' => $request->input('perfecture'),
+    'mont' => $request->input('mont'),
+    'parking' => $request->input('parking'),
+    'spring' => $request->input('spring'),
+    'food' => $request->input('food'),
+    'description' => $request->input('description'),
+]);
+        // Save the updated record
+        $group_content->save();
+    
+        // Redirect to the updated record's page
+        return redirect()->route('group.show', ['group' => $group_content->group_id]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    }
+
+
+    /*destroy=削除*/
     public function destroy($id)
     {
       $result = group_create::find($id)->delete();
@@ -271,4 +292,3 @@ public function showdetail($id)
     
   
 }
-

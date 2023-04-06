@@ -17,7 +17,7 @@
                              @if (Auth::check() && ($group_content->user_id === Auth::user()->id))
                             <!-- 更新ボタン -->
                             <div class="flex justify-end">
-                                <form action="{{ route('groupcontent.edit',['id' => $group_content->id, 'group_id' => $group_content->group_id, 'user_id' => $group_content->user_id]) }}" method="GET"
+                                <form action="{{ route('groupcontent.edit',['id' => $group_content->id, 'group_id' => $group_content->group_id]) }}" method="GET"
                                 
                                     class="text-left">
                                     <input type="hidden" name="id" value="{{ $group_content->id }}">
@@ -59,8 +59,10 @@
 
                                 <!-- 削除ボタン -->
 
-                                <form action="{{ route('groupcontent.destroy',$group_content->id) }}" method="POST"
-                                    class="text-left onsubmit=" return confirm('削除しますか？'); id="deleteForm">
+<form action="{{ route('groupcontent.destroy', ['group_id' => $group_content->group_id, 'id' => $group_content->id]) }}" method="POST" 
+class="text-left" onsubmit="return confirm('削除しますか？');" id="deleteForm">
+
+
                                     @method('delete')
                                     @csrf
 
