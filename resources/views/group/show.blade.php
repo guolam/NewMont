@@ -18,7 +18,7 @@
                     
                 <div class="flex justify-between mb-8">    
                     <div class="flex items-center justify-end mt-4">
-                        <a href="{{ url()->previous() }}">
+                        <a href="{{  route('group.index', $group->id) }}">
                             <x-secondary-button class="ml-3">
                                 {{ __('戻る') }}
                             </x-primary-button>
