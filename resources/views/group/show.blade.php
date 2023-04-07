@@ -51,7 +51,7 @@
                     </div>
 
                     <x-accordion>
-                        <h4 class="text-gray-800">所属ユーザー:</h4>
+                        <h4 class="text-gray-800 mb-8">所属ユーザー:</h4>
                         <div class="accordion-content">
                             <ul>
                                 @foreach ($related_users as $user)
@@ -63,12 +63,11 @@
 
                     @include('groupcontent/show')
 
-
-
                     <!-- 関連データを表示するためのコードを追加（例: 関連ユーザー、投稿など） -->
                     <!-- $related_dataを使用してデータを表示 -->
                 </div>
             </div>
         </div>
     </div>
+   
 </x-app-layout>

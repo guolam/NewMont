@@ -1,5 +1,4 @@
 <!-- resources/views/search/input.blade.php -->
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,6 +19,9 @@
                                 class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2"
                                 type="text" name="keyword" placeholder="例、くじゅう連山" autofocus>
                             <div class="flex flex-col mb-4">
+                        </form>
+                                
+                            <form class="mb-6" action="{{ route('search.select') }}" method="GET">
                                 <x-input-label for="prefecture" :value="__('都道府県')" />
                                 <select id="prefecture"
                                     class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"

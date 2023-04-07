@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('tweet')->group(function () {
         Route::get('search/input', [SearchController::class, 'create'])->name('search.input');
         Route::get('search/result', [SearchController::class, 'index'])->name('search.result');
+        Route::get('search/select', [SearchController::class, 'select'])->name('search.select');
         Route::get('timeline', [TweetController::class, 'timeline'])->name('tweet.timeline');
         Route::get('mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
         Route::get('select', [TweetController::class, 'select'])->name('tweet.select');
@@ -47,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('mygroup', [UserController::class, 'show'])->name('users.show');
     
     Route::resource('group', GroupController::class)->except(['edit', 'update']);
+    // Route::get('group/show/{id}', [GroupController::class, 'show'])->name('group.show');
     Route::get('group/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
     Route::put('group/update/{id}', [GroupController::class, 'update'])->name('group.update');
 
@@ -62,12 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('group_requests', GroupRequestController::class)->only(['index', 'create', 'store']);
     Route::prefix('group_requests/{id}')->group(function () {
         Route::post('approve', [GroupRequestController::class,'approve'])->name('group_requests.approve');
-Route::post('reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
+    Route::post('reject', [GroupRequestController::class, 'reject'])->name('group_requests.reject');
+});
 });
 
-});
-
-// Routes accessible without authentication
+// Routes accessible without authentication 認証なくてもOK
 Route::prefix('search')->group(function () {
 Route::get('{perfecture}', [SearchController::class, 'search'])->name('search');
 Route::get('result/{id}', [SearchController::class, 'show'])->name('search.result.detail');

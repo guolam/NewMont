@@ -34,10 +34,8 @@ class GroupContentController extends Controller
      */
     public function create($group_id)
     {
-        //
         $group = Group::findOrFail($group_id);
          return view('groupcontent.create', compact('group'));
-        // return view('groupcontent.create');
     }
 
     /**
@@ -115,13 +113,7 @@ class GroupContentController extends Controller
     return redirect()->route('group.show', ['group' => $group_content->group_id]);
 }
 
-// コンテンツのタイトルと内容を表示する画面
-    // public function show($group_id)
-    // {
-    //     $group_contents = GroupContent::where('group_id', $group_id)->get();
-    //     return view('groupcontent.show', compact('group_contents'));
-        
-    // }
+
 // コンテンツのタイトルと内容を表示する画面
     public function show($id, $group_id)
     {
@@ -133,8 +125,6 @@ class GroupContentController extends Controller
     }
 
 // コンテンツの詳細を出す画面
-
-
 public function showdetail($id)
 {
     $group_content = GroupContent::find($id);
@@ -164,69 +154,6 @@ public function showdetail($id)
 
 
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-        // {
-        // Check if the content group was found
-        
-         // group_contentモデルインスタンスの取得
-        // $group_content = GroupContent::find($id);
-        
-        
-
-        // dd($request);
-        // // バリデーション
-        // $validator = Validator::make($request->all(), [
-        //     'tweet' => 'required | max:255',
-        //     'perfecture' => 'required',
-        //     'description' => 'required',
-        //     'parking' => 'required',
-        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
-      
-        // // バリデーション:エラー
-        // if ($validator->fails()) {
-        //     return redirect()
-        //         ->route('groupcontent.edit', $id)
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
- 
-      // 画像がアップロードされている場合
-    //   if ($request->hasFile('image')) {
-    //       // 古い画像ファイルを削除
-    //       if ($content_group->image) {
-    //           Storage::disk('public')->delete('image/' . $content_group->image);
-    //       }
-      
-          // 新しい画像ファイルを保存
-    //       $imageName = time() . '.' . $request->image->extension();
-    //       $request->image->storeAs('image', $imageName, 'public');
-          
-    //       // データベースの画像フィールドを更新
-    //       $group_content->image = $imageName;
-      
-    //   // バリデーションが成功したデータを更新
-    //   $group_content->tweet = $request->tweet;
-    //   $group_content->perfecture = $request->perfecture;
-    //   $group_content->description = $request->description;
-    //   $group_content->parking = $request->parking;
-    //   $group_content->save();
-     
-    //   //データ更新処理
-      
-    //   return redirect()->route('groupcontent.show', ['group_id' => $group_content->group_id]);
-
-    // }
-
-
     public function update(Request $request, $group_id, $id)
     {
         
@@ -252,43 +179,62 @@ public function showdetail($id)
                     ->withErrors($validator);
             }
         
-        // Get the updated values from the request object
-        $group_content->date = $request->input('date');
-        $group_content->tweet = $request->input('tweet');
-        $group_content->is_public = $request->input('is_public');
-        $group_content->perfecture = $request->input('perfecture');
-        $group_content->mont = $request->input('mont');
-        $group_content->parking = $request->input('parking');
-        $group_content->spring = $request->input('spring');
-        $group_content->food = $request->input('food');
-        $group_content->description = $request->input('description');
+            // Get the updated values from the request object
+            $group_content->date = $request->input('date');
+            $group_content->tweet = $request->input('tweet');
+            $group_content->is_public = $request->input('is_public');
+            $group_content->perfecture = $request->input('perfecture');
+            $group_content->mont = $request->input('mont');
+            $group_content->parking = $request->input('parking');
+            $group_content->spring = $request->input('spring');
+            $group_content->food = $request->input('food');
+            $group_content->description = $request->input('description');
     
-    $group_content->fill([
-    'date' => $request->input('date'),
-    'tweet' => $request->input('tweet'),
-    'is_public' => $request->input('is_public'),
-    'perfecture' => $request->input('perfecture'),
-    'mont' => $request->input('mont'),
-    'parking' => $request->input('parking'),
-    'spring' => $request->input('spring'),
-    'food' => $request->input('food'),
-    'description' => $request->input('description'),
-]);
+            $group_content->fill([
+            'date' => $request->input('date'),
+            'tweet' => $request->input('tweet'),
+            'is_public' => $request->input('is_public'),
+            'perfecture' => $request->input('perfecture'),
+            'mont' => $request->input('mont'),
+            'parking' => $request->input('parking'),
+            'spring' => $request->input('spring'),
+            'food' => $request->input('food'),
+            'description' => $request->input('description'),
+    ]);
         // Save the updated record
         $group_content->save();
     
         // Redirect to the updated record's page
         return redirect()->route('group.show', ['group' => $group_content->group_id]);
-
     }
-
 
     /*destroy=削除*/
-    public function destroy($id)
-    {
-      $result = group_create::find($id)->delete();
-      return redirect()->route('groupcontent.index');
-    }
+    // public function destroy($id)
+    // {
+    //   $result = GroupContent::find($id)->delete();
+    //   return redirect()->route('groupcontent.index');
+    // }
     
-  
+//     public function destroy($id)
+// {
+//     $groupContent = GroupContent::find($id);
+
+//     if ($groupContent) {
+//         $groupContent->delete();
+//     }
+
+//     return redirect()->route('group.index');
+// }
+
+public function destroy($group_id, $id)
+{
+   
+    $groupContents = GroupContent::where('id', $id)->get();
+
+    foreach ($groupContents as $groupContent) {
+        $groupContent->delete();
+    }
+
+    return redirect()->route('group.show', $group_id);
+}
 }

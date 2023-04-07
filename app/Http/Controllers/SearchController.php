@@ -10,11 +10,7 @@ use Illuminate\Support\Collection;
 
 class SearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
       $keyword = trim($request->keyword);
@@ -31,133 +27,13 @@ class SearchController extends Controller
     }
 
 
-// public function index(Request $request)
-// {
-//     $keyword = $request->input('perfecture');
-
-//     $tweets = Tweet::query()
-//         ->where('perfecture', 'like', "%{$keyword}%")
-//         ->get();
-
-//     return response()->view('dashboard', compact('tweets'));
-// }
-
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('query');
-        
-    //     //TweetsとGroupContentsのテーブルから検索
-    //     $tweets = Tweet::query()
-    //         ->where('tweet', 'like', "%{$query}%")
-    //         ->orWhere('description', 'like', "%{$query}%")
-    //         ->orWhere('perfecture', 'like', "%{$keyword}%")
-    //         ->get();
-    
-    //     $groupContents = GroupContent::query()
-    //         ->where('tweet', 'like', "%{$query}%")
-    //         ->orWhere('description', 'like', "%{$query}%")
-    //         ->orWhere('perfecture', 'like', "%{$keyword}%")
-    //         ->get();
-    
-    //     return view('search_results', [
-    //         'tweets' => $tweets,
-    //         'groupContents' => $groupContents
-    //     ]);
-    // }
-
-// public function search(Request $request)
-// {
-//     $query = $request->input('query');
-//     $keyword = $request->input('perfecture');
-        
-//     //TweetsとGroupContentsのテーブルから検索
-//     $tweets = Tweet::query()
-//         ->where('tweet', 'like', "%{$query}%")
-//         ->orWhere('description', 'like', "%{$query}%")
-//         ->orWhere('perfecture', 'like', "%{$keyword}%")
-//         ->get();
-
-//     $groupContents = GroupContent::query()
-//         ->where('tweet', 'like', "%{$query}%")
-//         ->orWhere('description', 'like', "%{$query}%")
-//         ->orWhere('perfecture', 'like', "%{$keyword}%")
-//         ->get();
-
-//     return view('search_results', [
-//         'tweets' => $tweets,
-//         'groupContents' => $groupContents
-//     ]);
-// }
-
-
-// public function search(Request $request)
-// {
-//     $query = $request->input('keyword');
-//     $prefecture = $request->input('prefecture');
-        
-//     //TweetsとGroupContentsのテーブルから検索
-//     $tweets = Tweet::query()
-//         ->where('tweet', 'like', "%{$query}%")
-//         ->orWhere('description', 'like', "%{$query}%")
-//         ->where('perfecture', $prefecture)
-//         ->get();
-
-//     $groupContents = GroupContent::query()
-//         ->where('tweet', 'like', "%{$query}%")
-//         ->orWhere('description', 'like', "%{$query}%")
-//         ->where('perfecture', $prefecture)
-//         ->get();
-        
-//     return view('search_results', [
-//         'tweets' => $tweets,
-//         'groupContents' => $groupContents
-//     ]);
-// }
-
-// public function search(Request $request)
-// {
-    // // インプットの時
-    // $query = $request->input('query');
-    // // 
-    // $prefecture = $request->input('prefecture');
-    
-    // //TweetsとGroupContentsのテーブルから検索
-    // $tweets = Tweet::query()
-    //     ->where(function($q) use ($query, $prefecture) {
-    //         $q->when($prefecture, function($query, $prefecture) {
-    //             return $query->where('perfecture', $prefecture);
-    //         })
-    //         ->when($query, function($query, $keyword) {
-    //             return $query->where(function($q) use ($keyword) {
-    //                 $q->where('tweet', 'like', "%{$keyword}%")
-    //                   ->orWhere('description', 'like', "%{$keyword}%");
-    //             });
-    //         });
-    //     })
-    //     ->get();
-
-    // $groupContents = GroupContent::query()
-    //     ->where(function($q) use ($query, $prefecture) {
-    //         $q->when($prefecture, function($query, $prefecture) {
-    //             return $query->where('perfecture', $prefecture);
-    //         })
-    //         ->when($query, function($query, $keyword) {
-    //             return $query->where(function($q) use ($keyword) {
-    //                 $q->where('tweet', 'like', "%{$keyword}%")
-    //                   ->orWhere('description', 'like', "%{$keyword}%");
-    //             });
-    //         });
-    //     })
-    //     ->get();
-
-public function search(Request $request)
+    public function select(Request $request)
 {
-    //該当の県の値をこちらから渡す!
+//該当の県の値をこちらから渡す!
     // $perfecture = $request->route('perfecture');
     $perfectures = json_decode($request->route('perfecture'), true);
 
     // $perfecture = $request->perfecture;
-
     $tweets = new Collection();
     $groupContents = new Collection();
 
@@ -167,15 +43,41 @@ public function search(Request $request)
             ->whereIn('perfecture', $perfectures)
             ->get();
     }
-
     // GroupContentsテーブルから検索
     if ($perfectures) {
         $groupContents = GroupContent::query()
             ->whereIn('perfecture', $perfectures)
             ->get();
     }
+    // データをビューに渡すなどの処理
+    return view('search_results', [
+        'tweets' => $tweets,
+        'groupContents' => $groupContents
+    ]);
+}
 
+public function search(Request $request)
+{
+    //該当の県の値をこちらから渡す!
+    // $perfecture = $request->route('perfecture');
+    $perfectures = json_decode($request->route('perfecture'), true);
 
+    // $perfecture = $request->perfecture;
+    $tweets = new Collection();
+    $groupContents = new Collection();
+
+    // Tweetsテーブルから検索
+    if ($perfectures) {
+        $tweets = Tweet::query()
+            ->whereIn('perfecture', $perfectures)
+            ->get();
+    }
+    // GroupContentsテーブルから検索
+    if ($perfectures) {
+        $groupContents = GroupContent::query()
+            ->whereIn('perfecture', $perfectures)
+            ->get();
+    }
     // データをビューに渡すなどの処理
     return view('search_results', [
         'tweets' => $tweets,
