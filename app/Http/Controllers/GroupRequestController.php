@@ -41,6 +41,7 @@ class GroupRequestController extends Controller
 
     $existing_request = GroupRequest::where('group_id', $group_id)
                                     ->where('user_id', $user_id)
+                                    ->whereIn('status', ['pending', 'approved'])
                                     ->first();
 
     if ($existing_request) {
