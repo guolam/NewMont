@@ -135,7 +135,7 @@ public function showdetail($id)
         }
         } else {
         // 存在しないIDの場合のリダイレクト先
-        return redirect()->route('dashboard');
+        return redirect()->route('group.index');
         
         }
     }
