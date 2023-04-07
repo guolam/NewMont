@@ -23,8 +23,8 @@ return new class extends Migration
             $table->text('mont');
             $table->string('tweet');
             $table->text('parking');
-            $table->text('spring');
-            $table->text('food');
+            $table->string('spring')->nullable();
+            $table->string('food')->nullable();
             $table->text('description');
             $table->string('image');
             $table->timestamps();

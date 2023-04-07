@@ -68,14 +68,10 @@ class GroupContentController extends Controller
       //parking
       $group_content -> parking = request() -> parking;
       
-      $group_content -> spring = request() -> spring;
-      
-      $group_content -> food = request() -> food;
-      
+      $group_content->spring = request()->has('spring') ? request()->spring : null;
+      $group_content->food = request()->has('food') ? request()->food : null;
       $is_public = $request->input('is_public');
       $group_content->is_public = $is_public !== null ? $is_public : 0; // NULL値の場合、0に設定する
-    
-
     // imageの保存処理
       if(request('image')){
       $original=request()->file("image")->getClientOriginalName();
@@ -109,7 +105,7 @@ class GroupContentController extends Controller
     $group_content = new GroupContent();
     // （以下のコードはそのままです。）
 
-    // 一番下のリダイレクトを以下のように修正してください。
+    // group.showに戻る
     return redirect()->route('group.show', ['group' => $group_content->group_id]);
 }
 
