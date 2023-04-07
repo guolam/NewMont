@@ -10,7 +10,7 @@ use App\Models\User;
 use Auth;
 use ymfony\Component\HttpKernel\Exception\AccessDeniedHttpException; 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+
 
 
 class TweetController extends Controller
