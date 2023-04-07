@@ -33,7 +33,7 @@
                                 </x-href-button>
                             </div>
                         </div>
-                        @foreach ($groups as $group)
+                        @foreach ($groups->sortByDesc('created_at') as $group)
                         <ul>
                             <li>{{ $group->name }}</li>
                         </ul>
