@@ -7,6 +7,7 @@
     </x-slot>
 
     <div class="py-12">
+        @section('content')
         <div class="max-w-7xl mx-auto sm:w-8/12 md:w-1/2 lg:w-5/12">
             <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white  border-b border-gray-200  ">
@@ -22,7 +23,7 @@
                             </div>
                             <div class="flex items-center justify-end mt-4">
                                 <x-href-button class="ml-3" :href="route('group_requests.index')"
-                                    :active="request()->routeIs('group_requests.index')">
+                                    :active="request()->routeIs('group_requests.index')" :badge="$pending_requests_count">
                                     {{ __('グループ申請確認') }}
                                 </x-href-button>
                             </div>
@@ -92,5 +93,7 @@
                 </div>
             </div>
         </div>
+     
     </div>
+    
 </x-app-layout>

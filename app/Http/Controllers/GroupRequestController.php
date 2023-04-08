@@ -13,16 +13,33 @@ use Symfony\Componet\HttpKernel\Exception\AccessDeniedHttpException;
 
 class GroupRequestController extends Controller
 {
+    
     public function index()
-    {
-        $pending_requests = GroupRequest::where('status', 'pending')->get();
-        $groups = Group::all();
+{
+    $pending_requests = GroupRequest::where('status', 'pending')->get();
+    $pending_requests_count = GroupRequest::where('status', 'pending')->count();
+    $groups = Group::all();
+    $hasApplicants = false;
 
-        return view('group_requests.index', [
-        'pending_requests' => $pending_requests,
-        'groups' => $groups,
-        ]);
+    foreach ($groups as $group) {
+        if (Auth::user()->id === $group->user_id) {
+            foreach ($pending_requests as $request) {
+                if ($request->group_id === $group->id) {
+                    $hasApplicants = true;
+                    break 2;
+                }
+            }
+        }
     }
+
+    return view('group_requests.index', [
+        'pending_requests' => $pending_requests,
+        'pending_requests_count' => $pending_requests_count,
+        'groups' => $groups,
+        'hasApplicants' => $hasApplicants,
+    ]);
+}
+
 
     public function create()
     {

@@ -31,11 +31,21 @@
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
     </div>
             @csrf
-            <div class="flex items-center justify-end mt-4">
-              <x-primary-button class="ml-3">
-                {{ __('作成') }}
-              </x-primary-button>
-            </div>
+            <div class="flex justify-between">
+        <div class="flex items-center">
+          <a href="{{ url()->previous() }}">
+            <x-secondary-button>
+              {{ __('戻る') }}
+            </x-primary-button>
+          </a>
+        </div>
+      
+        <div class="flex items-center">
+          <x-primary-button class="ml-3">
+            {{ __('作成') }}
+          </x-primary-button>
+        </div>
+      </div>
 
     <!--<button type="submit" class="btn btn-primary">作成</button>-->
 </form>

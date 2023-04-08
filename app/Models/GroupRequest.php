@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GroupRequest;
 
 class GroupRequest extends Model
 {
@@ -24,5 +24,8 @@ class GroupRequest extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+        
     }
+    
+    
 }

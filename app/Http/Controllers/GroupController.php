@@ -1,23 +1,36 @@
 <?php
 
 // GroupController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use App\Models\GroupMembershipRequest;
+use App\Models\GroupRequest;
 use App\Models\Group;
-
+use Auth;
 
 class GroupController extends Controller
 {
  
+    // public function index()
+    // {
+    //     $groups = Group::all();
+    //     return view('group.index', compact('groups'));
+    // }
+    
     public function index()
-    {
-        $groups = Group::all();
-        return view('group.index', compact('groups'));
-    }
+{
+    $groups = Group::all();
+    $user = Auth::user();
+    $pending_requests_count = GroupRequest::where('status', 'pending')->count();
+
+    return view('group.index', [
+        'groups' => $groups,
+        'user' => $user,
+        'pending_requests_count' => $pending_requests_count
+    ]);
+}
+
 
     public function create()
     {
