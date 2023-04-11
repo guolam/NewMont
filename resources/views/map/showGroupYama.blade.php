@@ -20,14 +20,14 @@ function initMap() {
 
       var map = new google.maps.Map(target, {
         center: results[0].geometry.location,
-        zoom: 8,
+        zoom: 10,
       });
 
       // マーカーを追加
       var marker = new google.maps.Marker({
         position: results[0].geometry.location,
         map: map,
-        icon: "{{ asset('image/parkingmark.png') }}",
+        icon: "{{ asset('image/parkingicon.png') }}",
         animation: google.maps.Animation.DROP,
       });
 

@@ -188,72 +188,6 @@ public function show($id)
 }
 
 
-  
-//     public function update(Request $request, $id)
-// {
-//     // バリデーション
-//     $validator = Validator::make($request->all(), [
-//         'tweet' => 'required | max:255',
-//         'perfecture' => 'required',
-//         'description' => 'required',
-//         'parking' => 'required',
-//         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,heic,heif|max:2048',
-//     ]);
-
-//     // バリデーション:エラー
-//     if ($validator->fails()) {
-//         return redirect()
-//             ->route('tweet.edit', $id)
-//             ->withInput()
-//             ->withErrors($validator);
-//     }
-    
-
-//     // tweetモデルインスタンスの取得
-//     $tweet = Tweet::find($id);
-    
-//     // 画像がアップロードされている場合
-//         if ($request->hasFile('image')) {
-//             // 古い画像ファイルを削除
-//             if ($tweet->image) {
-//                 Storage::disk('public')->delete('image/' . $tweet->image);
-//             }
-
-//             // 画像を圧縮して保存
-//             $image = $request->file('image');
-//             $filename = time() . '.' . $image->getClientOriginalExtension();
-//             $destinationPath = storage_path('app/public/image/');
-
-//             $img = Image::make($image->getRealPath());
-//             $img->resize(800, null, function ($constraint) {
-//                 $constraint->aspectRatio();
-//             })->save($destinationPath . $filename);
-
-//             // データベースの画像フィールドを更新
-//             $tweet->image = $filename;
-//         }
-    
-//     // // 新しい画像ファイルを保存
-//     //     $imageName = time() . '.' . $request->image->extension();
-//     //     $request->image->storeAs('image', $imageName, 'public');
-//     // // データベースの画像フィールドを更新
-//     //     $tweet->image = $imageName;
-//     // }
-
-//     // バリデーションが成功したデータを更新
-//     // $tweet->update($request->all());
-    
-//     // バリデーションが成功したデータを更新
-//         $tweet->tweet = $request->tweet;
-//         $tweet->perfecture = $request->perfecture;
-//         $tweet->description = $request->description;
-//         $tweet->parking = $request->parking;
-//         $tweet->save();
-
-//     // リダイレクト
-//     return redirect()->route('dashboard')->with('success', 'ツイートが更新されました');
-// }
-
 public function update(Request $request, $id)
 {
     // バリデーション
@@ -262,7 +196,7 @@ public function update(Request $request, $id)
         'perfecture' => 'required',
         'description' => 'required',
         'parking' => 'required',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,heic,heif',
     ]);
 
     // バリデーション:エラー

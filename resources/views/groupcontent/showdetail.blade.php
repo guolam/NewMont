@@ -130,7 +130,7 @@
                             <div id="map" style="height:500px" class="w-960"></div>
                              <div class="flex flex-col mt-4 mb-4">
                                 <div class="flex">
-                                <img src="{{ asset('image/parkingmark.png') }}" style="width: 30px; height: 30px;">
+                                <img src="{{ asset('image/parkingicon.png') }}" style="width: 30px; height: 30px;">
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="parking">

@@ -53,7 +53,8 @@
 
                                 <!-- 削除ボタン -->
 
-                                <form action="{{ route('tweet.destroy',$tweet->id) }}" method="POST" class="text-left onsubmit="return confirm('削除しますか？'); id="deleteForm">
+                                <form action="{{ route('tweet.destroy',$tweet->id) }}" method="POST"
+                                    class="text-left onsubmit=" return confirm('削除しますか？'); id="deleteForm">
                                     @method('delete')
                                     @csrf
 
@@ -113,13 +114,14 @@
                                                 {{$tweet->tweet}}
                                             </p>
                                         </div>
-                                         @include('map/showSoloYama')
-                                         <!--駐車場の地図-->
+                                        @include('map/showSoloYama')
+                                        <!--駐車場の地図-->
                                         <div id="map" style="height:500px" class="w-960"></div>
                                         <div class="flex flex-col mt-4 mb-4">
                                             <div class="flex">
-                                            <img src="{{ asset('image/parkingmark.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
+                                                <img src="{{ asset('image/parkingicon.png') }}"
+                                                    style="width: 30px; height: 30px;">
+                                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="parking">
                                                 {{$tweet->parking}}
@@ -130,8 +132,9 @@
 
                                         <div class="flex flex-col mt-4 mb-4">
                                             <div class="flex">
-                                            <img src="{{ asset('image/springicon.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
+                                                <img src="{{ asset('image/springicon.png') }}"
+                                                    style="width: 30px; height: 30px;">
+                                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="spring">
                                                 @if($tweet->spring)
@@ -141,12 +144,13 @@
                                             @endif
                                             </p>
                                         </div>
-                                       
+
 
                                         <div class="flex flex-col mt-4 mb-4">
                                             <div class="flex">
-                                            <img src="{{ asset('image/ricemark.png') }}" style="width: 30px; height: 30px;">
-                                            <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　ごはん</p>
+                                                <img src="{{ asset('image/ricemark.png') }}"
+                                                    style="width: 30px; height: 30px;">
+                                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　ごはん</p>
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="food">
                                                 @if($tweet->food)
@@ -156,7 +160,7 @@
                                             @endif
                                             </p>
                                         </div>
-                                        
+
 
                                         <div class="flex flex-col mb-4">
                                             <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">
@@ -171,28 +175,56 @@
                                                 style="height:300px; object-fit: cover; display:block" />
 
                                         </div>
-                                        <div class="flex items-center justify-end mt-4">
+                                        <div class="flex items-center justify-center mt-4">
                                             <a href="{{ url()->previous() }}">
                                                 <x-secondary-button class="ml-3">
                                                     {{ __('戻る') }}
                                                     </x-primary-button>
                                             </a>
                                         </div>
+                                        <!--シェアボタン-->
+                                        <div class="flex">
+                                            <div class="flex mt-4 mb-4 justify-between">
+                                                <div class="mx-4 inline-block align-middle">
+                                                    <div class="line-it-button" data-lang="ja" data-type="share-a"
+                                                        data-ver="3" data-url="" data-color="default" data-size="large"
+                                                        data-count="false" style="display: none;"></div>
+                                                    <script
+                                                        src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"
+                                                        async="async" defer="defer"></script>
+                                                </div>
+                                                <div class="mx-4 inline-block align-middle">
+                                                    <div id="fb-root"></div>
+                                                    <script async defer crossorigin="anonymous"
+                                                        src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v12.0"></script>
+                                                    <div class="fb-share-button" data-href=""
+                                                        data-layout="button_count">
+                                                    </div>
+                                                </div>
+                                                <div class="mx-4 inline-block align-middle">
+                                                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                                                        class="twitter-share-button" data-show-count="false">Tweet</a>
+                                                    <script async src="https://platform.twitter.com/widgets.js"
+                                                        charset="utf-8"></script>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+                            document.querySelector('#deleteForm button[type="submit"]').addEventListener('click', function (event) {
+                                if (!confirm('削除してもよろしいですか？')) {
+                                    event.preventDefault();
+                                }
+                            });
+                        </script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                        <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&language=ja&region=JP&callback=initMap"></script>
                     </div>
-                    <script>
-                        document.querySelector('#deleteForm button[type="submit"]').addEventListener('click', function (event) {
-                            if (!confirm('削除してもよろしいですか？')) {
-                                event.preventDefault();
-                            }
-                        });
-                    </script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                    <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDad24zpc64K8oLZQoO_cWKpeCSeHLGNwc&language=ja&region=JP&callback=initMap"></script>
                 </div>
             </div>
         </div>
