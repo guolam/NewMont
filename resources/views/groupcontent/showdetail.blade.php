@@ -134,7 +134,9 @@
                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="parking">
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($group_content->parking) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                     {{$group_content->parking}}
+                                    </a>
                                 </p>
                             </div>
 
@@ -145,7 +147,9 @@
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="spring">
                                     @if($group_content->spring)
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($group_content->spring) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                     {{$group_content->spring}}
+                                    </a>
                                     @else
                                 <p>なし</p>
                                 @endif
@@ -161,7 +165,9 @@
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="food">
                                     @if($group_content->food)
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($group_content->food) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                     {{$group_content->food}}
+                                    </a>
                                     @else
                                 <p>なし</p>
                                 @endif

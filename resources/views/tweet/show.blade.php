@@ -124,7 +124,9 @@
                                                 <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="parking">
+                                                <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($tweet->parking) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                                 {{$tweet->parking}}
+                                                </a>
                                             </p>
                                             <!--ここに入れたい、駐車場の地図-->
                                         </div>
@@ -138,7 +140,9 @@
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="spring">
                                                 @if($tweet->spring)
+                                                <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($tweet->spring) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                                 {{$tweet->spring}}
+                                                </a>
                                                 @else
                                             <p>なし</p>
                                             @endif
@@ -154,7 +158,9 @@
                                             </div>
                                             <p class="py-2 px-3 text-gray-800" id="food">
                                                 @if($tweet->food)
+                                                 <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($tweet->food) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
                                                 {{$tweet->food}}
+                                                </a>
                                                 @else
                                             <p>なし</p>
                                             @endif
