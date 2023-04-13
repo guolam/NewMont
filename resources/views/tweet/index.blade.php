@@ -14,7 +14,7 @@
                             <tr>
                                 <th
                                     class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">
-                                    山旅一覧</th>
+                                    マイページ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,13 +26,11 @@
                                             <!-- 🔽 所属の人を追加 -->
                                             <div id="example"></div>
                                             <p class="text-left text-gray-800 dark:text-gray-200">{{$tweet->user->name}}</p>
-                                            <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">
-                                                {{$tweet->tweet}}</h3>
+                                            <h3 class="mt-2 text-left font-bold text-lg text-gray-800">{{$tweet->tweet}}</h3>
+                                        <img src="{{ asset('storage/image/'.$tweet->image)}}" 
+                                        class="mt-8 mb-8 mx-auto" style="height:300px; object-fit: cover; display:block" />
                                         </a>
                                         <div class="flex">
-
-                                            <!-- 条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->
-                                            
                                 </div>
                             </td>
                         </tr>

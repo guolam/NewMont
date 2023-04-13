@@ -26,6 +26,16 @@
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-grey-200">
+                    <div class="flex justify-between">
+                    <div class="flex flex-col mb-4">
+                        <div class="flex items-center justify-end mt-4">
+                            <x-href-button class="ml-3" :href="route('tweet.mypage')"
+                                :active="request()->routeIs('tweet.mypage')">
+                                {{ __('マイページ') }}
+                            </x-href-button>
+                        </div>
+                    </div>
+                    
                     <div class="flex flex-col mb-4">
                         <div class="flex items-center justify-end mt-4">
                             <x-href-button class="ml-3" :href="route('tweet.create')"
@@ -33,6 +43,7 @@
                                 {{ __('新規作成') }}
                             </x-href-button>
                         </div>
+                    </div>
                     </div>
                    
                     <!--セレクトタグで道都府県を自動検索-->
