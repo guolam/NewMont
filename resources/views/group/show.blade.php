@@ -51,7 +51,7 @@
                     </div>
 
                     <x-accordion>
-                        <h4 class="text-gray-800 mb-8">所属ユーザー:</h4>
+                        <h4 class="text-gray-800 mb-8">所属ユーザー▼</h4>
                         <div class="accordion-content">
                             <ul>
                                 @foreach ($related_users as $user)
