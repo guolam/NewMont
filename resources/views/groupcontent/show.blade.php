@@ -2,7 +2,7 @@
 <!--ここはgroupのコンテンツをグループごとに表示する画面です。-->
 
 <div>
-    @foreach ($group_contents as $group_content)
+    @foreach($group_contents->sortByDesc('created_at') as $group_content)
     
          <a href="{{ route('groupcontent.showdetail', $group_content->id) }}">
         <div style="padding-top: 0.1em; padding-bottom: 0.1rem" class="flex justify-between mt-8 mb-4">
