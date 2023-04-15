@@ -25,6 +25,15 @@
                         </a>
                     </div>
                     
+                    
+                    <div class="flex items-center justify-end mt-4">
+                        <x-href-button class="ml-3 " href="{{ route('groupcontent.create',$group->id) }}"
+                            :active="request()->routeIs('groupcontent.create')">
+                            {{ __('旅記録作成') }}
+                        </x-href-button>
+                    </div>
+                    
+                    
                     @if(Auth::user()->id === $group->user->id)
                        <div class="flex items-center justify-end mt-4">
                         <x-href-button href="{{ route('group.edit', $group->id) }}">
@@ -33,12 +42,7 @@
                       </div>
                       @endif
 
-                    <div class="flex items-center justify-end mt-4">
-                        <x-href-button class="ml-3 " href="{{ route('groupcontent.create',$group->id) }}"
-                            :active="request()->routeIs('groupcontent.create')">
-                            {{ __('旅記録作成') }}
-                        </x-href-button>
-                    </div>
+                    
                     </div>
 
                     <div class="mb-8">
