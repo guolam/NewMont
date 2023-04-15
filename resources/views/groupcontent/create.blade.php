@@ -110,7 +110,7 @@
             </div>
             
             @include('map/autocomplete')
-            <div class="flex flex-col mb-4">
+            <div class="flex flex-col mb-4 mt-4">
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="parking" :value="__('駐車場(必須・場所を入力すると、住所が表示されます)')" />
@@ -127,7 +127,7 @@
           
             <div id="map" style="height:500px" class="w-960"> </div>
 
-            <div class="flex flex-col mb-4">
+            <div class="flex flex-col mb-4 mt-4">
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="spring" :value="__('温泉(場所を入力すると、住所が表示されます)')" />
@@ -144,7 +144,7 @@
           
             <div id="mapSpring" style="height:500px" class="w-960"> </div>
 
-            <div class="flex flex-col mb-4">
+            <div class="flex flex-col mb-4 mt-4">
               <p class="title"> </p>
               <label class="full-field">
               <x-input-label for="food" :value="__('飲食店 (場所を入力すると、住所が表示されます)')" />
@@ -160,7 +160,7 @@
             </div>
             <div id="mapFood" style="height:500px" class="w-960"> </div>
             
-            <div class="flex flex-col mb-4">
+            <div class="flex flex-col mb-4 mt-4">
               <x-input-label for="description" :value="__('旅の感想（必須）')" />
               <textarea id="description" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="text" name="description" rows="4" required autofocus >{{ old('description') }}</textarea>
               <x-input-error :messages="$errors->get('description')" class="mt-2" />
@@ -168,9 +168,9 @@
             
             
             
-           <div class="flex flex-col mb-4">
+           <div class="flex flex-col mb-4 ">
               <x-input-label for="image" :value="__('画像 (必須)')" />
-              <input id="image" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="file" name="image" :value="old('image')" required autofocus />
+              <input id="image" class="block mt-1 w-full px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent mb-2" type="file" name="image" :value="old('image')" required autofocus />
               <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>
            

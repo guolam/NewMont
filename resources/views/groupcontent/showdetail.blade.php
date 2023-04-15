@@ -131,7 +131,7 @@
                              <div class="flex flex-col mt-4 mb-4">
                                 <div class="flex">
                                 <img src="{{ asset('image/parkingicon.png') }}" style="width: 30px; height: 30px;">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
+                                <p class="mb-2 mt-2 uppercase font-bold text-lg text-gray-800 ">　駐車場</p>
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="parking">
                                     <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($group_content->parking) }}" target="_blank" class="text-blue-500 hover:text-blue-800 transition duration-150 ease-in-out">
@@ -143,7 +143,7 @@
                             <div class="flex flex-col mt-4 mb-4">
                                 <div class="flex">
                                 <img src="{{ asset('image/springicon.png') }}" style="width: 30px; height: 30px;">
-                                <p class="mb-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
+                                <p class="mb-2 mt-2 uppercase font-bold text-lg text-gray-800 ">　温泉</p>
                                 </div>
                                 <p class="py-2 px-3 text-gray-800 " id="spring">
                                     @if($group_content->spring)

@@ -34,7 +34,7 @@
                 Peak Experiences, Everyday Journeys.<br><br>
                 山旅を日常に<br><br>
 
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded ml-2 mr-4 mb-8">
                     <a href="{{ route('login') }}">ログイン</a>
                 </button>
 
@@ -82,22 +82,22 @@
                 <h2 class="mr-8">
                     <a href="{{ route('search', ['perfecture' => json_encode(['青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県'])]) }}">東北</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['青森県'])]) }}">青森県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['岩手県'])]) }}">岩手県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['宮城県'])]) }}">宮城県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['秋田県'])]) }}">秋田県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['山形県'])]) }}">山形県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['福島県'])]) }}">福島県</a>
                 </p>
             </div>
@@ -108,25 +108,25 @@
                  <h2 class="mr-8">
                     <a href="{{ route('search', ['perfecture' => json_encode(['茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県'])]) }}">関東</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['茨城県'])]) }}">茨城県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['栃木県'])]) }}">栃木県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['群馬県'])]) }}">群馬県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['埼玉県'])]) }}">埼玉県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['千葉県'])]) }}">千葉県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['東京都'])]) }}">東京都</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['神奈川県'])]) }}">神奈川県</a>
                 </p>
             </div>
@@ -138,39 +138,39 @@
                     <a href="{{ route('search', ['perfecture' => json_encode (['新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県','静岡県','愛知県'])]) }}">中部</a>
                 </h2>
                 
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['新潟県'])]) }}">新潟県</a>
                 </p>
 
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['富山県'])]) }}">富山県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['石川県'])]) }}">石川県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['福井県'])]) }}">福井県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['山梨県'])]) }}">山梨県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['長野県'])]) }}">長野県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['岐阜県'])]) }}">岐阜県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['静岡県'])]) }}">静岡県</a>
 
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['愛知県'])])}}">愛知県</a>
                 </p>
             </div>
@@ -181,25 +181,25 @@
                 <h2 class="mr-8">
                      <a href="{{ route('search', ['perfecture' => json_encode(['三重県', '滋賀県', '京都県', '大阪府', '兵庫県', '奈良県', '和歌山県'])]) }}">近畿</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['三重県'])]) }}">三重県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['滋賀県'])]) }}">滋賀県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['京都府'])]) }}">京都府</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['大阪府'])]) }}">大阪府</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['兵庫県'])]) }}">兵庫県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['奈良県'])]) }}">奈良県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['和歌山県'])]) }}">和歌山県</a>
                 </p>
             </div>
@@ -209,19 +209,19 @@
                 <h2 class="mr-8">
                     <a href="{{ route('search', ['perfecture' => json_encode (['鳥取県', '島根県', '岡山県', '広島県'])]) }}">中国</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['鳥取県'])]) }}">鳥取県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['島根県'])]) }}">島根県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['岡山県'])]) }}">岡山県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['広島県'])]) }}">広島県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['山口県'])]) }}">山口県</a>
                 </p>
             </div>
@@ -232,16 +232,16 @@
                 <h2 class="mr-8">
                     <a href="{{ route('search', ['perfecture' => json_encode (['徳島県', '香川県', '愛媛県', '高知県'])]) }}">四国</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['徳島県'])]) }}">徳島県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['香川県'])]) }}">香川県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['愛媛県'])]) }}">愛媛県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['高知県'])]) }}">高知県</a>
                 </p>
             </div>
@@ -251,25 +251,25 @@
                 <h2 class="mr-8">
                     <a href="{{ route('search', ['perfecture' => json_encode (['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県'])]) }}">九州</a>
                 </h2>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture'  => json_encode([ '福岡県'])]) }}">福岡県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['佐賀県'])]) }}">佐賀県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['長崎県'])]) }}">長崎県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['熊本県'])]) }}">熊本県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['大分県'])]) }}">大分県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                     <a href="{{ route('search', ['perfecture' => json_encode(['宮崎県'])]) }}">宮崎県</a>
                 </p>
-                <p class="mr-4">
+                <p class="mr-2">
                    <a href="{{ route('search', ['perfecture' => json_encode(['鹿児島県'])]) }}">鹿児島県</a>
                 </p>
             </div>
@@ -287,7 +287,7 @@
         <div class="mt-8">
             <div class="flex">
                 <h2 class="mr-8">
-                     <a href="{{ route('search', ['perfecture'=> json_encode(['沖縄県'])]) }}">海外</a>
+                     <a href="{{ route('search', ['perfecture'=> json_encode(['海外'])]) }}">海外</a>
                 </h2>
             </div>
         </div>
