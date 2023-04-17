@@ -21,7 +21,7 @@
 
 <body class="">
     <div
-        class="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        class="relative flex flex-col items-center justify-center min-h-screen bg-white sm:items-center py-4 sm:pt-0">
 
         <img src="{{ asset('image/banner_re.png')}}" alt="YAMOBEの画像" class="w-full md:w-3/4  mx-auto mb-4">
         <div class="mt-4 flex flex-col sm:flex-row items-center">
